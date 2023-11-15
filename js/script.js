@@ -48,3 +48,35 @@ function chargementpage() {
         .catch(error => {
             console.error("Error fetching data:", error);
         }); }
+        function calculerScore() {
+            const tableBody = document.querySelector("#dataTable tbody");
+        
+            let critereConforme = 0;
+            let critereNonApplicable = 0;
+        
+            // Parcours des lignes du tableau
+            for (let i = 0; i < tableBody.rows.length; i++) {
+                const row = tableBody.rows[i];
+                const select = row.cells[2].querySelector("select");
+                const selectedValue = select.options[select.selectedIndex].value;
+        
+                // Si le critère est conforme
+                if (selectedValue === "conforme") {
+                    critereConforme++;
+                }
+        
+                // Si le critère est non applicable
+                if (selectedValue === "non_applicable") {
+                    critereNonApplicable++;
+                }
+            }
+        
+            // Total des critères (79)
+            const totalCritere = 79;
+        
+            // Calcul du score de conformité
+            const score = critereConforme / (totalCritere - critereNonApplicable);
+        
+            // Affichage du score dans la console (à adapter selon tes besoins)
+            console.log("Score de conformité :", score);
+        }
