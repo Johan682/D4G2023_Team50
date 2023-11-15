@@ -47,9 +47,9 @@
             function addRowToTable(value) {
                 const row = tableBody.insertRow();
            
-                const cell2 = row.insertCell(0);
+                const cell1 = row.insertCell(0);
                 
-                cell2.innerHTML = value;
+                cell1.text = field;
             }
 
             data.criteres.forEach(critere => {
