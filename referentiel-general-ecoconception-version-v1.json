@@ -1,5 +1,5 @@
 {
-  /*"title": "Référentiel général d&#39;écoconception de services numériques",
+  "title": "Référentiel général d&#39;écoconception de services numériques",
   "url": "https://ecoresponsable.numerique.gouv.fr/",
   "description": "Référentiel piloté par la DINUM, le Ministère de la Transition Écologique, l’ADEME et l’Institut du Numérique Responsable",
   "version": "v1",
@@ -7,7 +7,7 @@
   "author": {
     "name": "MiNumEco, la mission interministérielle numérique écoresponsable",
     "url": "https://ecoresponsable.numerique.gouv.fr/a-propos/"
-  },*/
+  },
   
   "criteres": [{
       "id": "1.1",
