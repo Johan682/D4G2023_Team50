@@ -29,18 +29,16 @@ function chargementpage() {
 
                 const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
 
-                options.forEach((optionText, index) => {
+                options.forEach(optionText => {
                     const label = document.createElement("label");
                     const radioInput = document.createElement("input");
 
                     radioInput.type = "radio";
                     radioInput.name = `radio_${field}`;
                     radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
-                    radioInput.id = `radio_${field}_${index + 1}`;
 
                     label.appendChild(radioInput);
                     label.appendChild(document.createTextNode(` ${optionText}`));
-                    label.setAttribute("for", `radio_${field}_${index + 1}`);
 
                     form.appendChild(label);
                 });
@@ -56,4 +54,47 @@ function chargementpage() {
         .catch(error => {
             console.error("Error fetching data:", error);
         });
+}
+
+function calculerScore() {
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    let critereConforme = 0;
+    let critereNonApplicable = 0;
+
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+
+        // Si un bouton radio est sélectionné
+        if (radioInputs.length > 0) {
+            const selectedValue = radioInputs[0].value;
+
+            // Si le critère est conforme
+            if (selectedValue === "conforme") {
+                critereConforme++;
+            }
+
+            // Si le critère est non applicable
+            if (selectedValue === "non_applicable") {
+                critereNonApplicable++;
+            }
+        }
+    }
+
+    // Total des critères (79)
+    const totalCritere = 79;
+
+    // Calcul du score de conformité
+    const score = critereConforme / (totalCritere - critereNonApplicable);
+
+    // Affichage du score dans l'élément HTML
+    const scoreContainer = document.getElementById("scoreContainer");
+
+    // Mise à jour du contenu de l'élément avec le score
+    scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
+
+    // Affichage du score dans la console (à adapter selon tes besoins)
+    console.log("Score de conformité:", score);
 }
