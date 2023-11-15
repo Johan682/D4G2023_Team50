@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
+    margin: 10%;
     padding: 0;
     font-family: Arial, sans-serif;
     margin: 40 px;
@@ -23,7 +23,7 @@ header {
     padding-right: 80%;
     color: #fff;
     position:left;
-    height: 0%;
+    height: min-content;
 }
 
 .textlogo {
