@@ -19,18 +19,47 @@
     <!-- Fin partie URL -->
     <!--Boutons-->
     <button id="restaurer" onclick="restaurerDonnees()">Restaurer les données</button>
-    <div id="dataContainer"></div>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <!--Fin de boutons-->
+
+    <table id="dataTable">
+        <thead>
+          <tr>
+            <th>Colonne1</th>
+            <th>Colonne2</th>
+            <!-- Ajoutez autant de colonnes que nécessaire pour représenter vos données -->
+          </tr>
+        </thead>
+        <tbody id="dataBody">
+          <!-- Les données seront ajoutées ici -->
+        </tbody>
+    </table>
+
     <script>
-        fetch("referentiel-general-ecoconception-version-v1.json")
-        .then(response => response.json())
-        .then(data =>{
-            console.log(data)
-            const dataContainer = document.getElementById("dataContainer");
+ fetch("referentiel-general-ecoconception-version-v1.json")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    const dataBody = document.getElementById("dataBody");
 
-        })
+    // Parcours des données et ajout au tableau
+    data.forEach(item => {
+      const row = document.createElement("tr");
 
+      // Ajoutez autant de cellules que nécessaire pour représenter vos données
+      const cell1 = document.createElement("td");
+      cell1.textContent = item.Prop1; // Remplacez "Prop1" par le nom de votre propriété
+      row.appendChild(cell1);
+
+      const cell2 = document.createElement("td");
+      cell2.textContent = item.Prop2; // Remplacez "Prop2" par le nom de votre propriété
+      row.appendChild(cell2);
+
+      // Ajoutez autant de cellules que nécessaire pour représenter vos données
+
+      dataBody.appendChild(row);
+    });
+  });
         
     </script>
   
