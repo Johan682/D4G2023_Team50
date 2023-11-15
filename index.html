@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="js/script.js"></script>
     <title>Accueil D4G Team50</title>
 </head>
 <body>
-    
-    <h1> Design4Green Team 50</h1>
-    
+    <header>
+        <h1> Design4Green Team 50</h1>
+    </header>
     <!-- URL -->
     <label for="urlInput">URL :</label>
     <input type="text" id="urlInput" placeholder="Entrez l'URL">
@@ -41,17 +41,18 @@
             const tableBody = document.querySelector("#dataTable tbody");
 
             // Function to add a row to the table
-            function addRowToTable(field, value) {
+            function addRowToTable(value,field) {
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                cell1.textContent = field;
-                cell2.innerHTML = value;
+                
+                cell1.innerHTML = value;
+                cell2.textContent = field;
             }
 
 
             data.criteres.forEach(critere => {
-                addRowToTable("Critere", critere.critere);
+                addRowToTable(critere.critere,"Critere");
             });
         })
         .catch(error => {
