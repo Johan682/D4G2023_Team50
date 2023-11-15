@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/script.js"></script>
-    <title>Accueil D4G Team50</title>
+    <title>Team50</title>
 </head>
 <body>
     <header>
@@ -21,12 +21,13 @@
     <button id="restaurer" onclick="restaurerDonnees()">Restaurer les données</button>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <!--Fin de boutons-->
-    <label for="cases">Choisir une option :</label>
+    <label for="cases">Choisir un etat :</label>
     <select id="cases" name="cases">
-        <option value="case1">Case 1</option>
-        <option value="case2">Case 2</option>
-        <option value="case3">Case 3</option>
-        <option value="case4">Case 4</option>
+        <option value="case1">Conforme</option>
+        <option value="case2">En cours de déploiement</option>
+        <option value="case3">Non conforme</option>
+        <option value="case4">Non applicable</option>
+        <option value="case4"></option>
     </select>
     
 <table id="dataTable" border="1">
