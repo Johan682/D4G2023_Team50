@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/script.js"></script>
-    <title>Design4Green Team50</title>
+    <title>Design4GreenTeam50</title>
 </head>
 <body>
     <header>
@@ -58,26 +58,17 @@
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                 const cell3 = row.insertCell(2);
+                 
                 cell1.textContent = field;
                 cell2.innerHTML = value;
-                const select = document.createElement("select");
-                    select.name = "etat";
-                    select.id = "etat";
-                    options.forEach(optionValue => {
-                        const option = document.createElement("option");
-                        option.value = optionValue;
-                        option.text = optionValue;
-                        select.appendChild(option);
-                        cell3.appendChild(select);
-                    });
+            
                 
             }
 
 
             data.criteres.forEach(critere => {
                
-                addRowToTable(critere.thematique,critere.critere , ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"] );
+                addRowToTable(critere.thematique,critere.critere );
 
                 
             });

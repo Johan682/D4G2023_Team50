@@ -21,7 +21,7 @@ header {
 .logo {
     font-size: 2em; /* Taille du texte du logo */
     margin-left: 0;
-    padding-right: ;
+    padding-right: 60%;
     letter-spacing: 2px; /* Espacement entre les lettres */
     text-transform: uppercase; /* Convertit le texte en majuscules */
     font-weight: bold; /* Épaisseur de la police */
