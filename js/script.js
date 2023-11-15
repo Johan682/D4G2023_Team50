@@ -19,7 +19,7 @@ function chargementpage() {
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                const cell3 = row.insertCell(2); // Ajout de la troisième colonne
+                const cell3 = row.insertCell(2);
 
                 cell1.textContent = field;
                 cell2.innerHTML = value;
@@ -41,6 +41,7 @@ function chargementpage() {
                     label.appendChild(radioInput);
                     label.appendChild(document.createTextNode(` ${optionText}`));
 
+                    // Ajout du label à la cellule
                     form.appendChild(label);
                 });
 

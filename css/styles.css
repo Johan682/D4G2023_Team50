@@ -30,5 +30,5 @@ header {
     font-weight: bold; /* Épaisseur de la police */
 }
 .score_contain {
-    display: flex;
+    display: in;
 }
