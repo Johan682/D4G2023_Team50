@@ -31,7 +31,13 @@
             <th>Value</th>
             <th>
                 <label for="cases">Choisir un état :</label>
-
+    <select id="cases" name="cases">
+        <option value="case1">Conforme</option>
+        <option value="case2">En cours de déploiement</option>
+        <option value="case3">Non conforme</option>
+        <option value="case4">Non applicable</option>
+        <option value="case4"></option>
+    </select>
             </th>
  
 
@@ -52,22 +58,26 @@
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                
+                const cell3 = row.insertCell(2);
                 cell1.textContent = field;
                 cell2.innerHTML = value;
-                
-            }
-
+                 // Ajouter un sélecteur multiple à la nouvelle cellule
+                 const selectElement = document.createElement("select");
+                selectElement.setAttribute("multiple", "multiple");
+                selectElement.name = "etat";
+                const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
+                options.forEach(optionText => {
+                    const optionElement = document.createElement("option");
+                    optionElement.value = optionText.toLowerCase().replace(/\s/g, ""); // Valeur en minuscules sans espaces
+                    optionElement.text = optionText;
+                    selectElement.add(optionElement);
+                });
+            cell3.appendChild(selectElement);
+        }
 
             data.criteres.forEach(critere => {
                
-                addRowToTable(critere.thematique,critere.critere ,     <select id="cases" name="cases">
-        <option value="case1">Conforme</option>
-        <option value="case2">En cours de déploiement</option>
-        <option value="case3">Non conforme</option>
-        <option value="case4">Non applicable</option>
-        <option value="case4"></option>
-    </select>);
+                addRowToTable(critere.thematique,critere.critere , );
 
                 
             });
