@@ -1,7 +1,18 @@
 function restaurerDonnees() {
 
 }
-
+function wichFruit()
+{
+  var element = document.form1.fruit;
+  for (var i=0; i < element.length; i++)
+  {
+    if (element[i].checked)
+    {
+      var fruit = element[i].value;
+      break;
+    }
+  }
+}
 function genererPDF() {
 var url = document.getElementById('urlInput').value;
 console.log(url)
@@ -96,4 +107,5 @@ function calculerScore() {
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
 
     // Affichage du score dans la console (à adapter selon tes besoins)
+    console.log("Score de conformité:", score);
 }
