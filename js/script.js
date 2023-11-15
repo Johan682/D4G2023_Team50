@@ -1,6 +1,8 @@
 function url() {
-    var url = document.getElementById('urlInput').value;
     if (url.trim() !== "") {
-        window.location.href = url;
+        var url = document.getElementById('urlInput').value;
+    }
+    else {
+        alert("Veuillez rentrer une valeur pour votre url")
     }
 }
