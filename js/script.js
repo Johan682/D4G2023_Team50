@@ -3,7 +3,7 @@ function restaurerDonnees() {
 }
 
 function genererPDF() {
-var url = document.getElementById('urlInput').value;
+var url = document.getElementById('pdf').value;
 
 }
 
