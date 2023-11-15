@@ -61,14 +61,23 @@
                  const cell3 = row.insertCell(2);
                 cell1.textContent = field;
                 cell2.innerHTML = value;
-               
+                const select = document.createElement("select");
+                    select.name = "etat";
+                    select.id = "etat";
+                    options.forEach(optionValue => {
+                        const option = document.createElement("option");
+                        option.value = optionValue;
+                        option.text = optionValue;
+                        select.appendChild(option);
+                        cell3.appendChild(select);
+                    });
                 
             }
 
 
             data.criteres.forEach(critere => {
                
-                addRowToTable(critere.thematique,critere.critere , );
+                addRowToTable(critere.thematique,critere.critere , ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"] );
 
                 
             });
