@@ -49,15 +49,6 @@
                 cell2.innerHTML = value;
             }
 
-            // Add rows for general information
-            addRowToTable("Title", data.title);
-            addRowToTable("URL", `<a href="${data.url}" target="_blank">${data.url}</a>`);
-            addRowToTable("Description", data.description);
-            addRowToTable("Version", data.version);
-            addRowToTable("Updated at", data.updated_at);
-            addRowToTable("Author", `<a href="${data.author.url}" target="_blank">${data.author.name}</a>`);
-
-            // Add rows for criteria
             data.criteres.forEach(critere => {
                 addRowToTable("Critere", critere.critere);
             });
