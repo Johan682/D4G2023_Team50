@@ -24,21 +24,32 @@ function chargementpage() {
                 cell1.textContent = field;
                 cell2.innerHTML = value;
 
-                // Création du menu déroulant
-                const select = document.createElement("select");
-                select.name = "etat";
-                const options = ["","Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
+                // Création des choix
+                const choices = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
 
-                // Ajout des options au menu déroulant
-                options.forEach(optionText => {
-                    const option = document.createElement("option");
-                    option.value = optionText.toLowerCase().replace(/ /g, "_");
-                    option.text = optionText;
-                    select.add(option);
+                // Ajout des choix en tant que boutons radio
+                choices.forEach(choiceText => {
+                    const radioBtn = document.createElement("input");
+                    radioBtn.type = "radio";
+                    radioBtn.name = `etat_${field.replace(/ /g, "_")}`;
+                    radioBtn.value = choiceText.toLowerCase().replace(/ /g, "_");
+                    radioBtn.id = `etat_${field.replace(/ /g, "_")}_${choiceText.toLowerCase().replace(/ /g, "_")}`;
+                    
+                    // Ajout du bouton radio à la cellule
+                    cell3.appendChild(radioBtn);
+
+                    // Création de l'étiquette pour le bouton radio
+                    const label = document.createElement("label");
+                    label.htmlFor = `etat_${field.replace(/ /g, "_")}_${choiceText.toLowerCase().replace(/ /g, "_")}`;
+                    label.textContent = choiceText;
+
+                    // Ajout de l'étiquette à la cellule
+                    cell3.appendChild(label);
+
+                    // Ajout d'un saut de ligne pour séparer les boutons radio
+                    const lineBreak = document.createElement("br");
+                    cell3.appendChild(lineBreak);
                 });
-
-                // Ajout du menu déroulant à la cellule
-                cell3.appendChild(select);
             }
 
             data.criteres.forEach(critere => {
@@ -47,40 +58,47 @@ function chargementpage() {
         })
         .catch(error => {
             console.error("Error fetching data:", error);
-        }); }
-        function calculerScore() {
-            const tableBody = document.querySelector("#dataTable tbody");
+        }); 
+}
+
+function calculerScore() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    let critereConforme = 0;
+    let critereNonApplicable = 0;
+
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
         
-            let critereConforme = 0;
-            let critereNonApplicable = 0;
+        // Obtention des boutons radio de la troisième colonne
+        const radioButtons = row.cells[2].querySelectorAll("input[type=radio]:checked");
         
-            // Parcours des lignes du tableau
-            for (let i = 0; i < tableBody.rows.length; i++) {
-                const row = tableBody.rows[i];
-                const select = row.cells[2].querySelector("select");
-                const selectedValue = select.options[select.selectedIndex].value;
+        // Vérification des boutons radio sélectionnés
+        radioButtons.forEach(radioBtn => {
+            const selectedValue = radioBtn.value;
         
-                // Si le critère est conforme
-                if (selectedValue === "conforme") {
-                    critereConforme++;
-                }
-        
-                // Si le critère est non applicable
-                if (selectedValue === "non_applicable") {
-                    critereNonApplicable++;
-                }
+            // Si le critère est conforme
+            if (selectedValue === "conforme") {
+                critereConforme++;
             }
         
-            // Total des critères (79)
-            const totalCritere = 79;
-        
-            // Calcul du score de conformité
-            const score = critereConforme / (totalCritere - critereNonApplicable);
-            // Affichage du score dans l'élément HTML
-            const scoreContainer = document.getElementById("scoreContainer");
+            // Si le critère est non applicable
+            if (selectedValue === "non_applicable") {
+                critereNonApplicable++;
+            }
+        });
+    }
 
-            // Mise à jour du contenu de l'élément avec le score
-            scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
-        
-            // Affichage du score dans la console (à adapter selon tes besoins)
-        }
+    // Total des critères (79)
+    const totalCritere = 79;
+
+    // Calcul du score de conformité
+    const score = critereConforme / (totalCritere - critereNonApplicable);
+    
+    // Affichage du score dans l'élément HTML
+    const scoreContainer = document.getElementById("scoreContainer");
+
+    // Mise à jour du contenu de l'élément avec le score
+    scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
+    // Affichage du score dans la console (à adapter selon tes besoins)
+}
