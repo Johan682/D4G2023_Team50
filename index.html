@@ -19,7 +19,7 @@
     <!-- Fin partie URL -->
     <!--Boutons-->
     <button id="restaurer" onclick="restaurerDonnees()">Restaurer les données</button>
-
+    <div id="dataContainer"></div>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <!--Fin de boutons-->
     <script>
@@ -29,7 +29,26 @@
             console.log(data)
             const dataContainer = document.getElementById("dataContainer");
 
+            // Loop through the data and create HTML elements
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                // Create HTML content for each data item
+                const content = `
+                    <h2>${item.critere}</h2>
+                    <p><strong>Thematique:</strong> ${item.thematique}</p>
+                    <p><strong>Objectif:</strong> ${item.objectif}</p>
+                    <p><strong>Mise en Oeuvre:</strong> ${item.miseEnOeuvre}</p>
+                    <p><strong>Controle:</strong> ${item.controle}</p>
+                    <a href="${item.url}" target="_blank">Learn More</a>
+                `;
+
+                card.innerHTML = content;
+                dataContainer.appendChild(card);
+            });
         })
+        .catch(error => console.error("Error fetching data:", error));
     </script>
   
 </body>
