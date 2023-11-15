@@ -13,10 +13,7 @@ console.log(url)
         "referentiel-general-ecoconception-version-v1.json"
       );
 
-}*/
-
-function print_JSONe(){
-   
+}
    
         // Fonction pour charger et afficher les données JSON
         function chargerEtAfficherJSON() {
@@ -49,5 +46,4 @@ function print_JSONe(){
     
           // Envoyer la requête
           xhr.send();
-        }
-    }
+        }*/
