@@ -76,7 +76,11 @@ function chargementpage() {
         
             // Calcul du score de conformité
             const score = critereConforme / (totalCritere - critereNonApplicable);
+            // Affichage du score dans l'élément HTML
+            const scoreContainer = document.getElementById("scoreContainer");
+
+            // Mise à jour du contenu de l'élément avec le score
+            scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
         
             // Affichage du score dans la console (à adapter selon tes besoins)
-            console.log("Score de conformité :", score);
         }
