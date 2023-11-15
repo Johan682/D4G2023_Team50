@@ -29,3 +29,6 @@ header {
     text-transform: uppercase; /* Convertit le texte en majuscules */
     font-weight: bold; /* Épaisseur de la police */
 }
+.score_contain {
+    display: flex;
+}

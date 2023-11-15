@@ -26,6 +26,7 @@ function chargementpage() {
 
                 // Création du formulaire avec des boutons radio
                 const form = document.createElement("form");
+                radioGroup.id = "radioGroup";
 
                 const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
 
