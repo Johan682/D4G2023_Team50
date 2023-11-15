@@ -22,28 +22,42 @@
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <!--Fin de boutons-->
 
-    <table id="dataTable">
-        <thead>
-          <tr>
-            <th>Colonne1</th>
-            <th>Colonne2</th>
-            <!-- Ajoutez autant de colonnes que nécessaire pour représenter vos données -->
-          </tr>
-        </thead>
-        <tbody id="dataBody">
-          <!-- Les données seront ajoutées ici -->
-        </tbody>
-    </table>
+    <div id="dataDisplay"></div>
 
     <script>
-        fetch("referentiel-general-ecoconception-version-v1.json")
+         fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
-        .then(data =>{
-            console.log(data)
-            
+        .then(data => {
+            // Get the div element to display the data
+            const dataDisplayDiv = document.getElementById("dataDisplay");
 
+            // Create and append elements to display the data
+            dataDisplayDiv.innerHTML = `
+                <p><strong>Title:</strong> ${data.title}</p>
+                <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+                <p><strong>Description:</strong> ${data.description}</p>
+                <p><strong>Version:</strong> ${data.version}</p>
+                <p><strong>Updated at:</strong> ${data.updated_at}</p>
+                <p><strong>Author:</strong> <a href="${data.author.url}" target="_blank">${data.author.name}</a></p>
+            `;
+
+            // Display criteria
+            data.criteres.forEach(critere => {
+                const critereDiv = document.createElement("div");
+                critereDiv.innerHTML = `
+                    <p><strong>Critere:</strong> ${critere.critere}</p>
+                    <p><strong>Thematique:</strong> ${critere.thematique}</p>
+                    <p><strong>Objectif:</strong> ${critere.objectif}</p>
+                    <p><strong>Mise en Oeuvre:</strong> ${critere.miseEnOeuvre}</p>
+                    <p><strong>Controle:</strong> ${critere.controle}</p>
+                    <a href="${critere.url}" target="_blank">More info</a>
+                `;
+                dataDisplayDiv.appendChild(critereDiv);
+            });
         })
-
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
         
     </script>
   
