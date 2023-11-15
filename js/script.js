@@ -7,15 +7,15 @@ var url = document.getElementById('urlInput').value;
 console.log(url)
 }
 
-function print_JSON() {
+/*function print_JSON() {
     xhr.open(
         "GET",
         "referentiel-general-ecoconception-version-v1.json"
       );
 
-}
+}*/
 
-//function print_JSONe(){
+function print_JSONe(){
    
    
         // Fonction pour charger et afficher les données JSON
