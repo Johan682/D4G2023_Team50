@@ -1,6 +1,7 @@
 function url() {
+    var url = document.getElementById('urlInput').value;
     if (url.trim() !== "") {
-        var url = document.getElementById('urlInput').value;
+        alert("Hello, ceci est un message en JavaScript !");
     }
     else {
         alert("Veuillez rentrer une valeur pour votre url")
