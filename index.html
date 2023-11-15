@@ -25,31 +25,11 @@
     <script>
         fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
-        .then(data => {
-            console.log(data);
-
-            // Manipulation du DOM pour afficher les données des critères
+        .then(data =>{
+            console.log(data)
             const dataContainer = document.getElementById("dataContainer");
 
-            // Accéder à la liste de critères
-            const criteres = data.criteres;
-
-            // Utiliser forEach pour parcourir les critères
-            criteres.forEach(critere => {
-                const critereDiv = document.createElement("div");
-                critereDiv.innerHTML = `
-                    <h2>${critere.critere}</h2>
-                    <p><strong>Thématique:</strong> ${critere.thematique}</p>
-                    <p><strong>Objectif:</strong> ${critere.objectif}</p>
-                    <p><strong>Mise en œuvre:</strong> ${critere.miseEnOeuvre}</p>
-                    <p><strong>Contrôle:</strong> ${critere.controle}</p>
-                `;
-                dataContainer.appendChild(critereDiv);
-            });
         })
-        .catch(error => {
-            console.error("Une erreur s'est produite lors de la récupération des données JSON.", error);
-        });
     </script>
   
 </body>
