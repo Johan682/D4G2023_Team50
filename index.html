@@ -22,25 +22,7 @@
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <!--Fin de boutons-->
    
-    <form>
-        <label>
-            <input type="radio" name="options" value="case1"> Case 1
-        </label>
-
-        <label>
-            <input type="radio" name="options" value="case2"> Case 2
-        </label>
-
-        <label>
-            <input type="radio" name="options" value="case3"> Case 3
-        </label>
-
-        <label>
-            <input type="radio" name="options" value="case4"> Case 4
-        </label>
-    </form>
-
-
+    
 <table id="dataTable" border="1">
     
     <thead>
@@ -76,22 +58,13 @@
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                const cell3 = row.insertCell(2);
+                 const cell3 = row.insertCell(2);
                 cell1.textContent = field;
                 cell2.innerHTML = value;
-                 // Ajouter un sélecteur multiple à la nouvelle cellule
-                 const selectElement = document.createElement("select");
-                selectElement.setAttribute("multiple", "multiple");
-                selectElement.name = "etat";
-                const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
-                options.forEach(optionText => {
-                    const optionElement = document.createElement("option");
-                    optionElement.value = optionText.toLowerCase().replace(/\s/g, ""); // Valeur en minuscules sans espaces
-                    optionElement.text = optionText;
-                    selectElement.add(optionElement);
-                });
-            cell3.appendChild(selectElement);
-        }
+                cell3.textContent = value;
+                
+            }
+
 
             data.criteres.forEach(critere => {
                
