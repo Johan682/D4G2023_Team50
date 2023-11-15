@@ -31,43 +31,7 @@
 
         })
 
-        async function afficherCritères() {
-        const criteriaSection = document.getElementById('dataContainer');
-        const jsonData = await chargerJson();
-        if (!jsonData) return;
-
-        // Filtrer les critères en fonction de l'état de conformité sélectionné
-        const filterState = document.getElementById('filter').value;
-        const critereFiltres = filterState === 'all' ? jsonData.criteres : jsonData.criteres.filter(critere => critere.etat === filterState);
-
-        // Effacer le contenu actuel
-        criteriaSection.innerHTML = '';
-
-        critereFiltres.forEach(critere => {
-                const critereElement = document.createElement('div');
-                critereElement.innerHTML = `
-            <h3>${critere.thematique}</h3>
-            <p>${critere.id} - ${critere.critere}</p>
-            <label>
-                <input type="radio" name="conformite_${critere.critere}" value="conform"> Conforme
-            </label>
-            <label>
-                <input type="radio" name="conformite_${critere.critere}" value="in-progress"> En cours de déploiement
-            </label>
-            <label>
-                <input type="radio" name="conformite_${critere.critere}" value="non-conform"> Non conforme
-            </label>
-            <label>
-                <input type="radio" name="conformite_${critere.critere}" value="not-applicable"> Non applicable
-            </label>
-            <br>
-        `;
-                criteriaSection.appendChild(critereElement);
-        });
-
-        // Appeler la fonction pour calculer et afficher le score de conformité
-        calculerScoreConformite();
-}
+        
     </script>
   
 </body>
