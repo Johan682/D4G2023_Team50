@@ -30,7 +30,7 @@
             <th>Thématique</th>
             <th>Value</th>
             <th>
-                <label for="cases">Choisir un etat :</label>
+                <label for="cases">Choisir un état :</label>
     <select id="cases" name="cases">
         <option value="case1">Conforme</option>
         <option value="case2">En cours de déploiement</option>
@@ -59,14 +59,15 @@
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
                 
-                cell1.innerHTML = value;
-                cell2.textContent = field;
+                cell1.textContent = field;
+                cell2.innerHTML = value;
+                
             }
 
 
             data.criteres.forEach(critere => {
                
-                addRowToTable(critere.critere, critere.thematique);
+                addRowToTable(critere.thematique,critere.critere );
 
                 
             });
