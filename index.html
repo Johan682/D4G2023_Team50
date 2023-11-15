@@ -43,22 +43,8 @@
     const dataBody = document.getElementById("dataBody");
 
     // Parcours des données et ajout au tableau
-    data.forEach(item => {
-      const row = document.createElement("tr");
+    data.foreach(item => {
 
-      // Ajoutez autant de cellules que nécessaire pour représenter vos données
-      const cell1 = document.createElement("td");
-      cell1.textContent = item.Prop1; // Remplacez "Prop1" par le nom de votre propriété
-      row.appendChild(cell1);
-
-      const cell2 = document.createElement("td");
-      cell2.textContent = item.Prop2; // Remplacez "Prop2" par le nom de votre propriété
-      row.appendChild(cell2);
-
-      // Ajoutez autant de cellules que nécessaire pour représenter vos données
-
-      dataBody.appendChild(row);
-    });
   });
         
     </script>
