@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
     <!--Fin de boutons-->
     <script>
         fetch("referentiel-general-ecoconception-version-v1.json")
-        .then(response => response.json)
+        .then(response => response.json())
         .then(data =>{
             console.log(data.id)
             document.querySelector("#debug").innerText=data.id
