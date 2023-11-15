@@ -52,7 +52,9 @@
 
 
             data.criteres.forEach(critere => {
+                addRowToTable("Thematique", critere.thematique);
                 addRowToTable(critere.critere,"Critere");
+                
             });
         })
         .catch(error => {
