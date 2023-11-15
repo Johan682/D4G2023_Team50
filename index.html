@@ -29,7 +29,7 @@
         .then(response => response.json())
         .then(data => {
             // Get the div element to display the data
-            const dataDisplayDiv = document.getElementById("#dataTable tbody");
+            const dataDisplayDiv = document.getElementById("dataDisplay ");
 
             // Create and append elements to display the data
             dataDisplayDiv.innerHTML = `
@@ -60,15 +60,7 @@
         });
         
     </script>
-   <table id="dataTable" border="1">
-    <thead>
-        <tr>
-            <th>Field</th>
-            <th>Value</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+<div id="dataDisplay"></div>
 
   
 </body>
