@@ -9,9 +9,6 @@
     <title>Accueil D4G Team50</title>
 </head>
 <body>
-    <header>
-        <h1 class="logo">Equipe50</h1>
-    </header>
     
     <h1> Design4Green Team 50</h1>
     
@@ -44,16 +41,17 @@
             const tableBody = document.querySelector("#dataTable tbody");
 
             // Function to add a row to the table
-            function addRowToTable(value) {
+            function addRowToTable(field, value) {
                 const row = tableBody.insertRow();
-           
                 const cell1 = row.insertCell(0);
-                
-                cell1.text = field;
+                const cell2 = row.insertCell(1);
+                cell1.textContent = field;
+                cell2.innerHTML = value;
             }
 
+
             data.criteres.forEach(critere => {
-                addRowToTable(critere.critere);
+                addRowToTable("Critere", critere.critere);
             });
         })
         .catch(error => {
