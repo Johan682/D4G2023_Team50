@@ -23,48 +23,36 @@
     <!--Fin de boutons-->
 
     
-    <table id="dataTable" border="1">
-        <thead>
-            <tr>
-                <th>Field</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    
+
     <script>
         fetch("referentiel-general-ecoconception-version-v1.json")
             .then(response => response.json())
             .then(data => {
-                // Get the table body to populate data
-                const tableBody = document.querySelector("#dataTable tbody");
+                // Get the div element to display the data
+                const dataDisplayDiv = document.getElementById("dataDisplay");
     
-                // Function to add a row to the table
-                function addRowToTable(field, value) {
-                    const row = tableBody.insertRow();
-                    const cell1 = row.insertCell(0);
-                    const cell2 = row.insertCell(1);
-                    cell1.textContent = field;
-                    cell2.innerHTML = value;
-                }
+                // Create and append elements to display the data
+                dataDisplayDiv.innerHTML = `
+                    <p><strong>Title:</strong> ${data.title}</p>
+                    <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+                    <p><strong>Description:</strong> ${data.description}</p>
+                    <p><strong>Version:</strong> ${data.version}</p>
+                    <p><strong>Updated at:</strong> ${data.updated_at}</p>
+                    <p><strong>Author:</strong> <a href="${data.author.url}" target="_blank">${data.author.name}</a></p>
+                `;
     
-                // Add rows for general information
-                addRowToTable("Title", data.title);
-                addRowToTable("URL", `<a href="${data.url}" target="_blank">${data.url}</a>`);
-                addRowToTable("Description", data.description);
-                addRowToTable("Version", data.version);
-                addRowToTable("Updated at", data.updated_at);
-                addRowToTable("Author", `<a href="${data.author.url}" target="_blank">${data.author.name}</a>`);
-    
-                // Add rows for criteria
+                // Display criteria
                 data.criteres.forEach(critere => {
-                    addRowToTable("Critere", critere.critere);
-                    addRowToTable("Thematique", critere.thematique);
-                    addRowToTable("Objectif", critere.objectif);
-                    addRowToTable("Mise en Oeuvre", critere.miseEnOeuvre);
-                    addRowToTable("Controle", critere.controle);
-                    addRowToTable("More info", `<a href="${critere.url}" target="_blank">Link</a>`);
+                    const critereDiv = document.createElement("div");
+                    critereDiv.innerHTML = `
+                        <p><strong>Critere:</strong> ${critere.critere}</p>
+                        <p><strong>Thematique:</strong> ${critere.thematique}</p>
+                        <p><strong>Objectif:</strong> ${critere.objectif}</p>
+                        <p><strong>Mise en Oeuvre:</strong> ${critere.miseEnOeuvre}</p>
+                        <p><strong>Controle:</strong> ${critere.controle}</p>
+                        <a href="${critere.url}" target="_blank">More info</a>
+                    `;
+                    dataDisplayDiv.appendChild(critereDiv);
                 });
             })
             .catch(error => {
@@ -72,6 +60,7 @@
             });
     </script>
     
+<div id="dataDisplay"></div>
 
   
 </body>
