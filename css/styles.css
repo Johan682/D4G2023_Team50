@@ -31,4 +31,5 @@ header {
 }
 .score_contain {
     display: inline-block;
+    position: relative;
 }
