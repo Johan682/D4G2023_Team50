@@ -24,21 +24,28 @@ function chargementpage() {
                 cell1.textContent = field;
                 cell2.innerHTML = value;
 
-                // Création du menu déroulant
-                const select = document.createElement("select");
-                select.name = "etat";
-                const options = ["","Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
+                // Création du formulaire avec des boutons radio
+                const form = document.createElement("form");
+                radioGroup.id = "radioGroup";
 
-                // Ajout des options au menu déroulant
+                const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
+
                 options.forEach(optionText => {
-                    const option = document.createElement("option");
-                    option.value = optionText.toLowerCase().replace(/ /g, "_");
-                    option.text = optionText;
-                    select.add(option);
+                    const label = document.createElement("label");
+                    const radioInput = document.createElement("input");
+
+                    radioInput.type = "radio";
+                    radioInput.name = `radio_${field}`;
+                    radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
+
+                    label.appendChild(radioInput);
+                    label.appendChild(document.createTextNode(` ${optionText}`));
+
+                    form.appendChild(label);
                 });
 
-                // Ajout du menu déroulant à la cellule
-                cell3.appendChild(select);
+                // Ajout du formulaire à la cellule
+                cell3.appendChild(form);
             }
 
             data.criteres.forEach(critere => {
@@ -47,7 +54,8 @@ function chargementpage() {
         })
         .catch(error => {
             console.error("Error fetching data:", error);
-        }); }
+        });
+}
         function calculerScore() {
             const tableBody = document.querySelector("#dataTable tbody");
         
