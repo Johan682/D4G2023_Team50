@@ -21,7 +21,16 @@
 
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <!--Fin de boutons-->
+    <script>
+        fetch("referentiel-general-ecoconception-version-v1.json")
+        .then(response => response.json())
+        .then(data =>{
+            console.log(data)
+            const a = data
+            console.log(a)
 
+        })
+    </script>
   
 </body>
 </html>
