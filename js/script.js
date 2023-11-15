@@ -45,10 +45,6 @@ function chargementpage() {
 
                     // Ajout de l'étiquette à la cellule
                     cell3.appendChild(label);
-
-                    // Ajout d'un saut de ligne pour séparer les boutons radio
-                    const lineBreak = document.createElement("br");
-                    cell3.appendChild(lineBreak);
                 });
             }
 
@@ -70,11 +66,11 @@ function calculerScore() {
     for (let i = 0; i < tableBody.rows.length; i++) {
         const row = tableBody.rows[i];
         
-        // Obtention des boutons radio de la troisième colonne
-        const radioButtons = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        // Obtention du bouton radio sélectionné de la troisième colonne
+        const radioBtn = row.cells[2].querySelector("input[type=radio]:checked");
         
-        // Vérification des boutons radio sélectionnés
-        radioButtons.forEach(radioBtn => {
+        // Vérification du bouton radio sélectionné
+        if (radioBtn) {
             const selectedValue = radioBtn.value;
         
             // Si le critère est conforme
@@ -86,7 +82,7 @@ function calculerScore() {
             if (selectedValue === "non_applicable") {
                 critereNonApplicable++;
             }
-        });
+        }
     }
 
     // Total des critères (79)
