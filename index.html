@@ -60,11 +60,6 @@
             // Add rows for criteria
             data.criteres.forEach(critere => {
                 addRowToTable("Critere", critere.critere);
-                addRowToTable("Thematique", critere.thematique);
-                addRowToTable("Objectif", critere.objectif);
-                addRowToTable("Mise en Oeuvre", critere.miseEnOeuvre);
-                addRowToTable("Controle", critere.controle);
-                addRowToTable("More info", `<a href="${critere.url}" target="_blank">Link</a>`);
             });
         })
         .catch(error => {
