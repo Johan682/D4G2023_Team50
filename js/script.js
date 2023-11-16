@@ -154,7 +154,7 @@ function trierTableauParTheme() {
 }
 
 function exportToPdf() {
-    const element = document.getElementById('html');
+    const element = document.getElementById('body'); // Change 'body' to the actual ID or class of the element you want to export
     const pdfOptions = {
         margin: 10,
         filename: 'audit_report.pdf',
@@ -166,7 +166,6 @@ function exportToPdf() {
 
     html2pdf(element, pdfOptions)
         .then(() => {
-            
             alert("Exportation en PDF effectuée !");
         })
         .catch((error) => {
