@@ -1,4 +1,4 @@
-.body {
+/*.body {
     font-family: 'Arial', sans-serif;
     margin-left:10%;
     margin-right:10%;
@@ -7,7 +7,7 @@
     background-color: #f9fff7;
 }
 .Filtre_Thema {
-   
+   padding: 0%;
 }
 /* Style pour l'étiquette du sélecteur */
 .Filtre_Thema label {
@@ -16,7 +16,7 @@
     font-weight: bold;
 }
 /* Style pour le sélecteur lui-même */
-.Filtre_Thema select {
+/*.Filtre_Thema select {
   
     padding: 10px;
     font-size: 14px;
