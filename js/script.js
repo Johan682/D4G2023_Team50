@@ -98,17 +98,14 @@ function calculerScore() {
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
 
-    // Mise à jour du contenu de l'élément avec le score
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
     
-        
-    
-        // Ajouter un gestionnaire d'événement de clic au bouton
-        scoreButton.addEventListener("click", function () {
-            //dropdownList.style.display = "none";
-            // Afficher ou masquer la liste déroulante en fonction de son état actuel
-            
-        });
+    // Mise à jour du contenu de l'élément avec le score
+    if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
+        dropdownList.style.display = "block";
+    } else {
+        dropdownList.style.display = "none";
+    }
     
 }
 function filtrerCriteres() {
