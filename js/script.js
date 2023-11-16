@@ -86,7 +86,7 @@ function calculerScore() {
     const scoreContainer = document.getElementById("scoreContainer");
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
     dropdownList.style.display = "block"; // Afficher la liste déroulante
-    dropdownList2.style.display = "block"; // Afficher la liste déroulante
+    dropdownList2.style.display ="block" // Afficher la liste déroulante
 }
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
