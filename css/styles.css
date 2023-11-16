@@ -30,7 +30,7 @@ header {
     font-weight: bold; /* Épaisseur de la police */
 }
 .scoreContain {
-    display: inline-block;
+    display: block;
   
 }
 #etatFilter {
