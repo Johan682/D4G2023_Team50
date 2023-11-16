@@ -245,25 +245,5 @@ function exportToPdf() {
 
 
 function trierCriteres() {
-    const tableBody = document.querySelector("#dataTable tbody");
-    const col4Sort = document.getElementById("col4Sort").value;
 
-    // Convertit la collection de lignes en un tableau pour pouvoir le trier
-    const rowsArray = Array.from(tableBody.rows);
-
-    // Trie le tableau en fonction de la 4e colonne
-    rowsArray.sort((a, b) => {
-        const col4A = a.cells[3].textContent.toLowerCase();
-        const col4B = b.cells[3].textContent.toLowerCase();
-        return col4Sort === 'asc' ? col4A.localeCompare(col4B) : col4B.localeCompare(col4A);
-    });
-
-    // Efface le contenu du tableau
-    tableBody.innerHTML = "";
-
-    // Ajoute les lignes triées au tableau
-    rowsArray.forEach(row => {
-        tableBody.appendChild(row);
-    });
-    
 }
