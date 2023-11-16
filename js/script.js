@@ -170,8 +170,5 @@ function filtrerCriteres() {
         // Ajouter les lignes triées au tableau
         lignesTrie.forEach(row => tableBody.appendChild(row));
     }
-    
-    // Exemple d'utilisation pour trier la colonne 0 (thematique) en ordre croissant
-    trierTableau(0, true);
 }
 
