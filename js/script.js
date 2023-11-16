@@ -154,21 +154,18 @@ function trierTableauParTheme() {
 }
 
 function exportToPdf() {
-    const element = document.getElementById('body'); // Change 'body' to the actual ID or class of the element you want to export
-    const pdfOptions = {
+    // Sélectionnez l'élément à convertir en PDF
+    const element = document.body;
+
+    // Options pour la conversion en PDF
+    const options = {
         margin: 10,
-        filename: 'audit_report.pdf',
+        filename: 'rapport_audit.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        splitText: true
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf(element, pdfOptions)
-        .then(() => {
-            alert("Exportation en PDF effectuée !");
-        })
-        .catch((error) => {
-            console.error('Erreur lors de l\'exportation en PDF :', error);
-        });
+    // Utilisez html2pdf pour générer le PDF
+    html2pdf(element, options);
 }
