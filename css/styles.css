@@ -40,7 +40,7 @@ header {
 }
 
 .textlogo {
-    font-size: 2em;
+    
     margin-left: 0;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -59,7 +59,7 @@ select {
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
-    border: 1px solid #ccc; /* Fix pour la bordure des champs de texte */
+    border: 1px solid #ccc; 
     border-radius: 4px;
 }*/
 
