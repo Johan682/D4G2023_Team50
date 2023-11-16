@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["Conforme", "En cours de deploiement", "Non conforme", "Non applicable"];
+                const options = ["Conforme", "Encoursdedeploiement", "nonconforme", "nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -90,7 +90,7 @@ function calculerScore() {
             }
 
             // Si le critère est non applicable
-            if (selectedValue === "non_applicable") {
+            if (selectedValue === "nonapplicable") {
                 critereNonApplicable++;
             }
         }
@@ -113,6 +113,7 @@ function calculerScore() {
     
         // Ajouter un gestionnaire d'événement de clic au bouton
         scoreButton.addEventListener("click", function () {
+            dropdownList.style.display = "none";
             // Afficher ou masquer la liste déroulante en fonction de son état actuel
             if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
                 dropdownList.style.display = "block";
