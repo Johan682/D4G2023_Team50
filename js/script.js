@@ -132,27 +132,6 @@ function filtrerCriteres() {
     
 }
 
-function trierTableauParTheme() {
-    const tableBody = document.querySelector("#dataTable tbody");
-
-    // Convertir les lignes du tableau en un tableau
-    const rowsArray = Array.from(tableBody.rows);
-
-    // Trier le tableau en fonction du thème (première colonne)
-    rowsArray.sort((a, b) => {
-        const themeA = a.cells[0].textContent.toLowerCase();
-        const themeB = b.cells[0].textContent.toLowerCase();
-        return themeA.localeCompare(themeB);
-    });
-
-    // Supprimer toutes les lignes du tableau actuel
-    tableBody.innerHTML = "";
-
-    // Ajouter les lignes triées au tableau
-    rowsArray.forEach(row => {
-        tableBody.appendChild(row);
-    });
-}
 
 // Ajoutez une fonction pour sauvegarder les états intermédiaires
 function sauvegarderEtatsIntermediaires() {
