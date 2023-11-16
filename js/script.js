@@ -205,7 +205,7 @@ function exportToPdf() {
 
     // Options pour la conversion en PDF
     const options = {
-        margin: 10,
+        margin: 5,
         filename: 'rapport_audit.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
