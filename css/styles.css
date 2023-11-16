@@ -9,7 +9,12 @@
 .Filtre_Thema {
     margin-bottom: 20px;
 }
-
+/* Style pour l'étiquette du sélecteur */
+.Filtre_Thema label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
 
 /* Style pour le conteneur scoreContain */
 .scoreContain {
