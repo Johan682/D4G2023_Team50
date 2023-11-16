@@ -111,3 +111,18 @@ function calculerScore() {
     // Affichage du score dans la console (à adapter selon tes besoins)
     console.log("Score de conformité:", score);
 }
+for (let i = 0; i < tableBody.rows.length; i++) {
+    const row = tableBody.rows[i];
+    const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_");
+    const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+    const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
+
+    // Affiche ou masque la ligne en fonction des filtres sélectionnés
+    const afficherLigne =
+        (themeFilter === "toutes" || themeFilter === themeValue) &&
+        (etatFilter === "tous" || etatFilter === etatValue);
+
+    // Met à jour la visibilité de la ligne
+    row.style.display = afficherLigne ? "" : "none";
+}
+
