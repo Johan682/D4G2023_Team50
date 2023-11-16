@@ -220,8 +220,34 @@ function exportToPdf() {
     html2pdf(element, options);
 }
 
-function trierCriteres() {
-alert('Je pete mon crane')
+function trierCriteres(etat) {
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    // Convertir les lignes du tableau en un tableau
+    const rowsArray = Array.from(tableBody.rows);
+
+    // Trier le tableau en fonction de l'état (troisième colonne)
+    rowsArray.sort((a, b) => {
+        const etatA = a.cells[2].querySelector("input[type=radio]:checked").value;
+        const etatB = b.cells[2].querySelector("input[type=radio]:checked").value;
+
+        // Vous pouvez ajuster l'ordre de tri en fonction de vos besoins
+        if (etatA < etatB) {
+            return -1;
+        } else if (etatA > etatB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    // Supprimer toutes les lignes du tableau actuel
+    tableBody.innerHTML = "";
+
+    // Ajouter les lignes triées au tableau
+    rowsArray.forEach(row => {
+        tableBody.appendChild(row);
+    });
 }
 
 
