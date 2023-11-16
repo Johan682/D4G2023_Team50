@@ -173,7 +173,7 @@ function exportToPdf() {
 
 function trierCriteres(etat) {
     const tableBody = document.querySelector("#dataTable tbody");
-    const themetrier = document.getElementById("themetrier").value.toLowerCase(); // Converti en minuscules
+    const themetrier = document.getElementById("themetrier").value; // Converti en minuscules
     const etattrier = document.getElementById("etattrier").value; // Converti en minuscules
 
     // Parcours des lignes du tableau
