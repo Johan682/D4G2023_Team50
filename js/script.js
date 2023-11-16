@@ -244,35 +244,4 @@ function exportToPdf() {
 }
 
 
-function trierCriteres() {
-    const tableBody = document.querySelector("#dataTable tbody");
-    const themetrierElement = document.getElementById("themetrier");
-    const etattrierElement = document.getElementById("etattrier");
-
-    // Vérifier si les éléments existent avant d'accéder à leurs propriétés
-    if (!themetrierElement || !etattrierElement) {
-        console.error("Les éléments 'themetrier' ou 'etattrier' n'ont pas été trouvés.");
-        return;
-    }
-
-    const themetrier = themetrierElement.value.toLowerCase();
-    const etattrier = etattrierElement.value.toLowerCase();
-
-    // Parcours des lignes du tableau
-    for (let i = 0; i < tableBody.rows.length; i++) {
-        const row = tableBody.rows[i];
-        const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_");
-        const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-        const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
-
-        // Affiche ou masque la ligne en fonction des filtres sélectionnés
-        const afficherLigne =
-            (themetrier === "toutes" || themetrier === themeValue) &&
-            (etattrier === "tous" || etattrier === etatValue);
-
-        // Met à jour la visibilité de la ligne
-        row.style.display = afficherLigne ? "" : "none";
-    }
-}
-
 
