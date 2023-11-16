@@ -154,55 +154,6 @@ function trierTableauParTheme() {
     });
 }
 
-
-const tableBody = document.querySelector("#dataTable tbody");
-let data;  // Ajoutez cette ligne pour déclarer la variable data à l'échelle globale
-function enregistrer() {
-    fetch("referentiel-general-ecoconception-version-v1.json")
-        .then(response => response.json())
-        .then(data => {
-            // Exemple : stocker les réponses intermédiaires dans un tableau
-            let reponsesIntermediaires = [];
-
-            for (let i = 0; i < tableBody.rows.length; i++) {
-                const reponses = [];
-                const row = tableBody.rows[i];
-                const theme = row.cells[0].textContent;
-                const value = row.cells[1].textContent;
-                const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-                const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
-
-                // Stocker les réponses intermédiaires dans un objet
-                reponses.push({
-                    theme: theme,
-                    value: value,
-                    etat: etat,
-                });
-
-                // Ajouter les réponses intermédiaires à la liste globale
-                reponsesIntermediaires.push(reponses);
-            }
-
-            console.log(reponsesIntermediaires);
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-        });
-}
-
-function resetTable(tableBody) {
-    // Réinitialiser le contenu du tableau
-    tableBody.innerHTML = "";
-
-    // Exemple : ajouter une ligne vide pour chaque critère
-
-    data.criteres.forEach(critere => {
-        addRowToTable(critere.thematique, critere.critere, "");
-        console.log();
-    });
-
-}
-
 function exportToPdf() {
     // Sélectionnez l'élément à convertir en PDF
     const element = document.body;
@@ -222,7 +173,7 @@ function exportToPdf() {
 
 function trierCriteres(etat) {
     const tableBody = document.querySelector("#dataTable tbody");
-    const themeFilter = document.getElementById("etatFilter").value.toLowerCase(); // Converti en minuscules
+    const themeFilter = document.getElementById("etattrier").value.toLowerCase(); // Converti en minuscules
     const etatFilter = document.getElementById("Filtre_Thema").value; // Converti en minuscules
 
     // Parcours des lignes du tableau
