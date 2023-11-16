@@ -127,13 +127,13 @@ function calculerScore() {
 }
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
-    const themeFilter = document.getElementById("themeFilter").value;
-    const etatFilter = document.getElementById("etatFilter").value;
+    const themeFilter = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
+    const etatFilter = document.getElementById("etatFilter").value.toLowerCase(); // Converti en minuscules
 
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
         const row = tableBody.rows[i];
-        const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_");
+        const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
         const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
         const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
 
