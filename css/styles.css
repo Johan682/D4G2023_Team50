@@ -76,7 +76,9 @@ header {
     font-weight: bold;
 }
 
-
+#etatFilter {
+    display: none;
+}
 
 input,
 select {
@@ -86,6 +88,7 @@ select {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: red;
 }
 
 /* Ajoutez des styles supplémentaires selon vos besoins */
