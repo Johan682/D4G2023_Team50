@@ -61,6 +61,8 @@ function chargementpage() {
 
 function calculerScore() {
     const tableBody = document.querySelector("#dataTable tbody");
+    const scoreButton = document.getElementById("score");
+    const dropdownList = document.getElementById("etatFilter");
 
     let critereConforme = 0;
     let critereNonApplicable = 0;
@@ -98,18 +100,13 @@ function calculerScore() {
     // Mise à jour du contenu de l'élément avec le score
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
     
-        const scoreButton = document.getElementById("score");
-        const dropdownList = document.getElementById("etatFilter");
+        
     
         // Ajouter un gestionnaire d'événement de clic au bouton
         scoreButton.addEventListener("click", function () {
             //dropdownList.style.display = "none";
             // Afficher ou masquer la liste déroulante en fonction de son état actuel
-            if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
-                dropdownList.style.display = "block";
-            } else {
-                dropdownList.style.display = "none";
-            }
+            
         });
     
 }
@@ -156,4 +153,24 @@ function trierTableauParTheme() {
     rowsArray.forEach(row => {
         tableBody.appendChild(row);
     });
+}
+
+function exportToPdf() {
+    const element = document.getElementById('app');
+    const pdfOptions = {
+        margin: 10,
+        filename: 'audit_report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        splitText: true
+    };
+
+    html2pdf(element, pdfOptions)
+        .then(() => {
+            alert("Exportation en PDF effectuée !");
+        })
+        .catch((error) => {
+            console.error('Erreur lors de l\'exportation en PDF :', error);
+        });
 }
