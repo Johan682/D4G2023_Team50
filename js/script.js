@@ -166,25 +166,8 @@ function exportToPdf() {
 
     html2pdf(element, pdfOptions)
         .then(() => {
-             // Create a Blob from the PDF data
-             const blob = pdf.output('blob');
-
-             // Create a download link
-             const link = document.createElement('a');
-             link.href = URL.createObjectURL(blob);
-             link.download = 'audit_report.pdf';
- 
-             // Append the link to the body
-             document.body.appendChild(link);
- 
-             // Trigger a click on the link to open the PDF file
-             link.click();
- 
-             // Remove the link from the body
-             document.body.removeChild(link);
- 
-             alert("Exportation en PDF effectuée !");
             
+            alert("Exportation en PDF effectuée !");
         })
         .catch((error) => {
             console.error('Erreur lors de l\'exportation en PDF :', error);
