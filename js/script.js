@@ -63,64 +63,45 @@ function calculerScore() {
     const tableBody = document.querySelector("#dataTable tbody");
     const scoreButton = document.getElementById("score");
     const dropdownList = document.getElementById("etatFilter");
-    const button = document.getElementById("filtrer");
-
+    const dropdownList2 = document.getElementById("etatSorte");
     let critereConforme = 0;
-    let critereNonApplicable = 0;
-
-    // Parcours des lignes du tableau
-    for (let i = 0; i < tableBody.rows.length; i++) {
+    let critereNonApplicable = 0; 
+    for (let i = 0; i < tableBody.rows.length; i++) { // Parcours des lignes du tableau
         const row = tableBody.rows[i];
-        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-
-        // Si un bouton radio est sélectionné
+        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked"); // Si un bouton radio est sélectionné
         if (radioInputs.length > 0) {
-            const selectedValue = radioInputs[0].value;
-
-            // Si le critère est conforme
-            if (selectedValue === "conforme") {
-                critereConforme++;
-            }
-
-            // Si le critère est non applicable
+            const selectedValue = radioInputs[0].value; 
+            if (selectedValue === "conforme") { // Si le critère est conforme
+                critereConforme++;}
             if (selectedValue === "nonapplicable") {
                 critereNonApplicable++;
             }
         }
     }
-    
-
     // Total des critères (79)
     const totalCritere = 79;
-
     // Calcul du score de conformité
     const score = critereConforme / (totalCritere - critereNonApplicable);
-
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
-
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
-    
     // Afficher la liste déroulante
     dropdownList.style.display = "block";
-    // Afficher le bouton de tri
-    button.style.display = "block";
-
-
-    
+    // Afficher la liste déroulante
+    dropdownList2.style.display = "block";
 }
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
     const themeFilter = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
     const etatFilter = document.getElementById("etatFilter").value; // Converti en minuscules
-
+    
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
         const row = tableBody.rows[i];
         const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
         const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
         const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
-
+        
         // Affiche ou masque la ligne en fonction des filtres sélectionnés
         const afficherLigne =
             (themeFilter === "toutes" || themeFilter === themeValue) &&
@@ -132,9 +113,9 @@ function filtrerCriteres() {
     
 }
 
-
 // Ajoutez une fonction pour sauvegarder les états intermédiaires
 function sauvegarderEtatsIntermediaires() {
+    
     // Récupérez les états intermédiaires depuis le tableau
     const etatsIntermediaires = recupereEtatsIntermediaires();
 
