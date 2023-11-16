@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["Conforme", "Encoursdedeploiement", "Nonconforme", "Nonapplicable"];
+                const options = ["Conforme", "test", "Nonconforme", "Nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
