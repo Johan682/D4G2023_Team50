@@ -37,7 +37,6 @@
 /* Style pour le conteneur scoreContain */
 .scoreContain {
     display: flex; /* Utiliser le modèle de boîte flexible pour aligner les éléments sur la même ligne */
-    align-items: center; /* Centrer les éléments verticalement */
 }
 
 /* Style pour le bouton score */
