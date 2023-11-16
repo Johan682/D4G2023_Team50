@@ -153,6 +153,52 @@ function trierTableauParTheme() {
     });
 }
 
+let reponsesIntermediaires = [];
+let reponseFinale = {};
+function enregistrer() {
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    // Exemple : stocker les réponses intermédiaires dans un tableau
+    const reponses = [];
+
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const theme = row.cells[0].textContent;
+        const value = row.cells[1].textContent;
+        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
+
+        // Stocker les réponses intermédiaires dans un objet
+        reponses.push({
+            theme: theme,
+            value: value,
+            etat: etat,
+        });
+    }
+
+    // Ajouter les réponses intermédiaires à la liste globale
+    reponsesIntermediaires.push(reponses);
+    console.log();
+
+    // Réinitialiser le tableau pour de nouvelles réponses
+    resetTable(tableBody);
+}
+
+function resetTable(tableBody) {
+    // Réinitialiser le contenu du tableau
+    tableBody.innerHTML = "";
+
+    // Exemple : ajouter une ligne vide pour chaque critère
+
+    data.criteres.forEach(critere => {
+        addRowToTable(critere.thematique, critere.critere, "");
+        console.log();
+    });
+
+}
+
+
+
 function exportToPdf() {
     // Sélectionnez l'élément à convertir en PDF
     const element = document.body;
