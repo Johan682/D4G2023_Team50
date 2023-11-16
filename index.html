@@ -29,7 +29,7 @@
     <button id="score" onclick="calculerScore()">Score</button>
     <div id="scoreContainer"></div>
     </div>
-    <button id="enregistrer" onclick="enregistrer()">Enregistrer les données</button>
+    <button id="sauvegarder" onclick="sauvegarderEtatsIntermediaires()">Sauvegarder les états intermédiaires</button>
     <button id="trier" onclick="trierTableauParTheme()">Trier Tableau</button>  
     <button id="pdf" onclick="exportToPdf()">Génerer PDF</button>
     
@@ -57,7 +57,7 @@
         </select>
     </label>
 
-    <div class="Filtre_Thema">
+    
     
     <select id="themeFilter" onchange="filtrerCriteres()" placeholder="Filtrer par thématique">
     <option value="" disabled selected>Filtrer par thématique</option>
