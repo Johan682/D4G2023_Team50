@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["conforme", "encoursdedeploiement", "nonconforme", "nonapplicable"];
+                const options = ["conforme", "en cours de deploiement", "non conforme", "nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -45,7 +45,7 @@ function chargementpage() {
 
                     radioInput.type = "radio";
                     radioInput.name = `radio_${field}`;
-                    radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
+                    radioInput.value = optionText.toLowerCase();
 
                     label.appendChild(radioInput);
                     label.appendChild(document.createTextNode(` ${optionText}`));
@@ -101,7 +101,7 @@ function calculerScore() {
 
     // Calcul du score de conformité
     const score = critereConforme / (totalCritere - critereNonApplicable);
-
+    console.log(critereNonApplicable);
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
 

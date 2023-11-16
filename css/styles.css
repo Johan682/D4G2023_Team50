@@ -3,11 +3,11 @@
     margin-left:10%;
     margin-right:10%;
     margin-top:3%;
-    text-align: center;
+
     background-color: #f9fff7;
 }
 .Filtre_Thema {
-    margin-bottom: 20px;
+   
 }
 /* Style pour l'étiquette du sélecteur */
 .Filtre_Thema label {
@@ -33,7 +33,7 @@
 
 /* Style pour le bouton score */
 #score {
-    margin-right: 80px;
+    margin-right: 80%;
    
 }
 
