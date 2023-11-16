@@ -24,9 +24,18 @@ function chargementpage() {
                 cell1.textContent = field;
                 cell2.innerHTML = value;
 
+                // Création du fieldset
+                const fieldset = document.createElement("fieldset");
+                fieldset.id = `fieldset_${field}`;
+
+                const legend = document.createElement("legend");
+                legend.textContent = "Statut du critère";
+
+                fieldset.appendChild(legend);
+
                 // Création du formulaire avec des boutons radio
                 const form = document.createElement("form");
-                form.id = "radioGroup";
+                form.id = `radioGroup_${field}`;
 
                 const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
 
@@ -45,7 +54,8 @@ function chargementpage() {
                 });
 
                 // Ajout du formulaire à la cellule
-                cell3.appendChild(form);
+                fieldset.appendChild(form);
+                cell3.appendChild(fieldset);
             }
 
             data.criteres.forEach(critere => {
@@ -56,6 +66,9 @@ function chargementpage() {
             console.error("Error fetching data:", error);
         });
 }
+
+// ... le reste de votre code
+
 
 function calculerScore() {
     const tableBody = document.querySelector("#dataTable tbody");
