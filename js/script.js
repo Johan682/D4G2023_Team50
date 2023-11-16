@@ -144,5 +144,34 @@ function filtrerCriteres() {
         // Met à jour la visibilité de la ligne
         row.style.display = afficherLigne ? "" : "none";
     }
+    function trierTableau(colonneIndex, ordreCroissant) {
+        const tableBody = document.querySelector("#dataTable tbody");
+        const rows = Array.from(tableBody.rows);
+    
+        // Fonction de comparaison pour la méthode sort
+        function comparer(a, b) {
+            const valueA = a.cells[colonneIndex].textContent.trim();
+            const valueB = b.cells[colonneIndex].textContent.trim();
+    
+            // Vous pouvez ajuster le type de comparaison en fonction de vos besoins
+            if (ordreCroissant) {
+                return valueA.localeCompare(valueB, undefined, { numeric: true, sensitivity: 'base' });
+            } else {
+                return valueB.localeCompare(valueA, undefined, { numeric: true, sensitivity: 'base' });
+            }
+        }
+    
+        // Trier les lignes en utilisant la fonction de comparaison
+        const lignesTrie = rows.sort(comparer);
+    
+        // Supprimer les lignes du tableau
+        rows.forEach(row => tableBody.removeChild(row));
+    
+        // Ajouter les lignes triées au tableau
+        lignesTrie.forEach(row => tableBody.appendChild(row));
+    }
+    
+    // Exemple d'utilisation pour trier la colonne 0 (thematique) en ordre croissant
+    trierTableau(0, true);
 }
 

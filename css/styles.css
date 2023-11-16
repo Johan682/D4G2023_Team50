@@ -27,12 +27,12 @@
 
 /* Style pour le conteneur scoreContain */
 .scoreContain {
-    margin-bottom: 0px;
+    margin-left: 10%;
 }
 
 /* Style pour le bouton score */
 #score {
-    margin-right: 0px;
+    margin-right: 4px;
 }
 
 /* Style pour le conteneur scoreContainer */
