@@ -285,14 +285,14 @@ function trierParEtat() {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
 
-        if (!etatA && !etatB) {
-            return 0; // Les deux sont vides, pas de changement d'ordre
-        } else if (!etatA) {
-            return 1; // Seul a est vide, déplacez-le à la fin
-        } else if (!etatB) {
-            return -1; // Seul b est vide, déplacez-le à la fin
-        } else {
+        if (etatA && etatB) {
             return etatA.checked ? -1 : 1;
+        } else if (etatA) {
+            return -1;
+        } else if (etatB) {
+            return 1;
+        } else {
+            return 0; // Les deux sont vides, pas de changement d'ordre
         }
     }
 
@@ -322,4 +322,5 @@ function trierParEtat() {
         });
     });
 }
+
 
