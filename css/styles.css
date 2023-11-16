@@ -76,9 +76,7 @@ header {
     font-weight: bold;
 }
 
-#etatFilter {
-    display: none;
-}
+
 
 input,
 select {
