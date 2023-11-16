@@ -63,6 +63,7 @@ function calculerScore() {
     const tableBody = document.querySelector("#dataTable tbody");
     const scoreButton = document.getElementById("score");
     const dropdownList = document.getElementById("etatFilter");
+    const button = document.getElementById("filtrer");
 
     let critereConforme = 0;
     let critereNonApplicable = 0;
@@ -100,12 +101,12 @@ function calculerScore() {
 
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
     
-    // Mise à jour du contenu de l'élément avec le score
-    if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
-        dropdownList.style.display = "block";
-    } else {
-        dropdownList.style.display = "none";
-    }
+    // Afficher la liste déroulante
+    dropdownList.style.display = "block";
+    // Afficher le bouton de tri
+    button.style.display = "block";
+
+
     
 }
 function filtrerCriteres() {
@@ -153,42 +154,40 @@ function trierTableauParTheme() {
     });
 }
 
-let reponsesIntermediaires = [];
-let reponseFinale = {};
+
+const tableBody = document.querySelector("#dataTable tbody");
+let data;  // Ajoutez cette ligne pour déclarer la variable data à l'échelle globale
 function enregistrer() {
     fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
         .then(data => {
-            // Get the table body to populate data
-            const tableBody = document.querySelector("#dataTable tbody");
+            // Exemple : stocker les réponses intermédiaires dans un tableau
+            let reponsesIntermediaires = [];
 
-    // Exemple : stocker les réponses intermédiaires dans un tableau
-    
+            for (let i = 0; i < tableBody.rows.length; i++) {
+                const reponses = [];
+                const row = tableBody.rows[i];
+                const theme = row.cells[0].textContent;
+                const value = row.cells[1].textContent;
+                const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+                const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
 
-    for (let i = 0; i < tableBody.rows.length; i++) {
-        const reponses = [];
-        const row = tableBody.rows[i];
-        const theme = row.cells[0].textContent;
-        const value = row.cells[1].textContent;
-        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-        const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
+                // Stocker les réponses intermédiaires dans un objet
+                reponses.push({
+                    theme: theme,
+                    value: value,
+                    etat: etat,
+                });
 
-        // Stocker les réponses intermédiaires dans un objet
-        reponses.push({
-            theme: theme,
-            value: value,
-            etat: etat,
+                // Ajouter les réponses intermédiaires à la liste globale
+                reponsesIntermediaires.push(reponses);
+            }
+
+            console.log(reponsesIntermediaires);
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
         });
-    
-
-    // Ajouter les réponses intermédiaires à la liste globale
-    reponsesIntermediaires.push(reponses);
-    console.log();
-
-    }
-    })
-    // Réinitialiser le tableau pour de nouvelles réponses
-    resetTable(tableBody);
 }
 
 function resetTable(tableBody) {
