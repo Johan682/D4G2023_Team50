@@ -214,3 +214,56 @@ function exportToPdf() {
     html2pdf(element, options);
 }
 
+function trierCriteres() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const themeSort = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
+    const etatSort = document.getElementById("etatFilter").value; // Converti en minuscules
+
+    // Convertit les lignes du tableau en un tableau ordinaire
+    const rowsArray = Array.from(tableBody.rows);
+
+    // Fonction de comparaison pour le tri
+    const compareRows = (row1, row2) => {
+        const themeValue1 = row1.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
+        const themeValue2 = row2.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
+
+        const etatInputs1 = row1.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etatValue1 = etatInputs1.length > 0 ? etatInputs1[0].value : "";
+
+        const etatInputs2 = row2.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etatValue2 = etatInputs2.length > 0 ? etatInputs2[0].value : "";
+
+        // Comparaison en fonction des critères de tri
+        if (themeSort !== "toutes") {
+            if (themeValue1 !== themeSort && themeValue2 !== themeSort) {
+                return 0; // Les deux ne correspondent pas au thème de tri, pas de changement d'ordre
+            } else if (themeValue1 !== themeSort) {
+                return 1; // row1 doit aller après row2 car il ne correspond pas au thème de tri
+            } else if (themeValue2 !== themeSort) {
+                return -1; // row1 doit aller avant row2 car il ne correspond pas au thème de tri
+            }
+        }
+
+        if (etatSort !== "tous") {
+            if (etatValue1 !== etatSort && etatValue2 !== etatSort) {
+                return 0; // Les deux ne correspondent pas à l'état de tri, pas de changement d'ordre
+            } else if (etatValue1 !== etatSort) {
+                return 1; // row1 doit aller après row2 car il ne correspond pas à l'état de tri
+            } else if (etatValue2 !== etatSort) {
+                return -1; // row1 doit aller avant row2 car il ne correspond pas à l'état de tri
+            }
+        }
+
+        // Aucun critère de tri spécifique, pas de changement d'ordre
+        return 0;
+    };
+
+    // Trie le tableau ordinaire en fonction de la fonction de comparaison
+    rowsArray.sort(compareRows);
+
+    // Vide le contenu du tableau et ajoute les lignes triées
+    tableBody.innerHTML = "";
+    rowsArray.forEach(row => tableBody.appendChild(row));
+}
+
+
