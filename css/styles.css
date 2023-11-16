@@ -36,7 +36,8 @@
 
 /* Style pour le conteneur scoreContain */
 .scoreContain {
-    display: flex; /* Utiliser le modèle de boîte flexible pour aligner les éléments sur la même ligne */
+    position: absolute;
+    display: inline-block; /* Utiliser le modèle de boîte flexible pour aligner les éléments sur la même ligne */
 }
 
 /* Style pour le bouton score */
@@ -48,7 +49,7 @@
 #scoreContainer {
     border: 1px solid #ccc; /* Ajouter une bordure pour délimiter le div (à titre d'exemple) */
     padding: 10px; /* Ajouter du rembourrage pour un aspect visuel amélioré */
-    width: fit-content;
+    width: 10%;
 }
 
 
