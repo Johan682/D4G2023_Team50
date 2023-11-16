@@ -101,7 +101,7 @@ function calculerScore() {
 
     // Calcul du score de conformité
     const score = critereConforme / (totalCritere - critereNonApplicable);
-
+    console.log(critereNonApplicable);
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
 
