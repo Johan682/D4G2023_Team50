@@ -1,4 +1,3 @@
-const jsPDF = require('jspdf');
 
 function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
@@ -226,6 +225,8 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
         }
     };
 }
+
+const jsPDF = require('jspdf'); 
 
 function exportToPdf() {
     // Créez une instance de jsPDF
