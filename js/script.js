@@ -1,3 +1,4 @@
+const jsPDF = require('jspdf');
 
 function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
