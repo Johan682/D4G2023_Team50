@@ -1,6 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {let reponsesIntermediaires = [];
-let reponseFinale = {};
-let url = document.getElementById('urlInput').value;
 
 function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
@@ -160,6 +157,10 @@ function trierTableauParTheme() {
         tableBody.appendChild(row);
     });
 }
+document.addEventListener("DOMContentLoaded", function () {let reponsesIntermediaires = [];
+    let reponseFinale = {};
+    let url = document.getElementById('urlInput').value;
+    
 
 function enregistrer() {
     const tableBody = document.querySelector("#dataTable tbody");
