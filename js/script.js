@@ -87,6 +87,7 @@ function calculerScore() {
             }
         }
     }
+    
 
     // Total des critères (79)
     const totalCritere = 79;
