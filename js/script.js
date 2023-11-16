@@ -81,7 +81,7 @@ function calculerScore() {
     // Total des critères (79)
     const totalCritere = 79;
     // Calcul du score de conformité
-    const score = critereConforme / (totalCritere - critereNonApplicable);
+    const score = (critereConforme / (totalCritere - critereNonApplicable))*100;
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
