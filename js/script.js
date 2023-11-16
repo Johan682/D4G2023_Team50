@@ -1,4 +1,8 @@
 let reponsesPartielles = [];
+// Déclare un objet pour stocker les réponses partielles
+let reponsesPartielles = [];
+
+// Fonction pour enregistrer les réponses partielles
 function enregistrer() {
     const tableBody = document.querySelector("#dataTable tbody");
     const reponses = [];
@@ -16,11 +20,42 @@ function enregistrer() {
 
     // Ajoute les réponses partielles à l'objet global
     reponsesPartielles.push(reponses);
+
+    // Réinitialise le tableau pour la prochaine saisie
+    resetTable();
 }
 
+// Fonction pour générer le PDF à partir des réponses partielles
 function genererPDF() {
-var url = document.getElementById('urlInput').value;
-console.log(url)
+    const pdf = new jsPDF();
+
+    // Parcours des réponses partielles
+    reponsesPartielles.forEach((reponses, index) => {
+        // Ajoute les réponses au PDF
+        pdf.text(`Réponses Partielles ${index + 1}`, 10, 10);
+        reponses.forEach((reponse, i) => {
+            pdf.text(`${i + 1}. ${reponse.theme}: ${reponse.etat}`, 10, 20 + i * 10);
+        });
+
+        // Ajoute une nouvelle page pour les réponses suivantes
+        if (index !== reponsesPartielles.length - 1) {
+            pdf.addPage();
+        }
+    });
+
+    // Télécharge le PDF
+    pdf.save("reponses_partielles.pdf");
+}
+
+// Fonction pour réinitialiser le tableau
+function resetTable() {
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    // Supprimer toutes les lignes du tableau
+    tableBody.innerHTML = "";
+
+    // Ajouter les lignes initiales au tableau
+    chargementpage();
 }
 
 function chargementpage() {
