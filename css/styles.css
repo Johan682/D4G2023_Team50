@@ -7,25 +7,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour le conteneur div Filtre_Thema */
-.Filtre_Thema {
-    margin-bottom: 20px;
-}
-
-/* Style pour l'étiquette du sélecteur */
-.Filtre_Thema label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-/* Style pour le sélecteur lui-même */
-
-
-/* Style pour les options du sélecteur */
-.Filtre_Thema select option {
-    font-size: 14px;
-}
 
 /* Style pour le conteneur scoreContain */
 .scoreContain {
@@ -70,14 +51,8 @@ header {
     display: none;
 }
 
-/* Style pour les étiquettes */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
 
-/* Style pour les champs de texte */
+/* Style pour les champs de texte 
 input,
 select {
     width: 100%;
@@ -86,7 +61,7 @@ select {
     box-sizing: border-box;
     border: 1px solid #ccc; /* Fix pour la bordure des champs de texte */
     border-radius: 4px;
-}
+}*/
 
 /* Style pour les boutons */
 button {
