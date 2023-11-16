@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["conforme", "encoursdedeploiement", "nonconforme", "nonapplicable"];
+                const options = ["conforme", "en cours de deploiement", "nonconforme", "nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -127,7 +127,7 @@ function calculerScore() {
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
     const themeFilter = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
-    const etatFilter = document.getElementById("etatFilter").value; // Converti en minuscules
+    const etatFilter = document.getElementById("etatFilter").value.toLowerCase(); // Converti en minuscules
 
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
