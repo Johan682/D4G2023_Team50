@@ -1,5 +1,21 @@
+let reponsesPartielles = [];
 function enregistrer() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const reponses = [];
 
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const theme = row.cells[0].textContent;
+        const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etat = etatInputs.length > 0 ? etatInputs[0].value : "";
+
+        // Ajoute la réponse partielle à la liste
+        reponses.push({ theme, etat });
+    }
+
+    // Ajoute les réponses partielles à l'objet global
+    reponsesPartielles.push(reponses);
 }
 
 function genererPDF() {
@@ -153,11 +169,11 @@ function trierTableauParTheme() {
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
-    // Trier le tableau en fonction du thème (première colonne)
+    // Trier le tableau en fonction de l'état (troisième colonne)
     rowsArray.sort((a, b) => {
-        const themeA = a.cells[0].textContent.toLowerCase();
-        const themeB = b.cells[0].textContent.toLowerCase();
-        return themeA.localeCompare(themeB);
+        const etatA = a.cells[2].querySelector("input[type=radio]:checked").value;
+        const etatB = b.cells[2].querySelector("input[type=radio]:checked").value;
+        return etatA.localeCompare(etatB);
     });
 
     // Supprimer toutes les lignes du tableau actuel
