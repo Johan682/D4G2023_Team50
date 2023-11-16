@@ -36,7 +36,7 @@
 
 /* Style pour le conteneur scoreContain */
 .scoreContain {
-    position: absolute;
+    position: relative;
     display: inline-block; /* Utiliser le modèle de boîte flexible pour aligner les éléments sur la même ligne */
 }
 
