@@ -179,13 +179,14 @@ function enregistrer() {
             value: value,
             etat: etat,
         });
-    }
-    })
+    
 
     // Ajouter les réponses intermédiaires à la liste globale
     reponsesIntermediaires.push(reponses);
     console.log();
 
+    }
+    })
     // Réinitialiser le tableau pour de nouvelles réponses
     resetTable(tableBody);
 }
