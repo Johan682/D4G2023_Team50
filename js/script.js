@@ -85,12 +85,12 @@ function calculerScore() {
             const selectedValue = radioInputs[0].value;
 
             // Si le critère est conforme
-            if (selectedValue === "conforme") {
+            if (selectedValue == "conforme") {
                 critereConforme++;
             }
 
             // Si le critère est non applicable
-            if (selectedValue === "Non applicable") {
+            if (selectedValue == "Non applicable") {
                 critereNonApplicable++;
             }
         }
