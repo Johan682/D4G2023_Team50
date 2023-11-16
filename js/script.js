@@ -86,7 +86,7 @@ function calculerScore() {
     const scoreContainer = document.getElementById("scoreContainer");
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
     // Afficher la liste déroulante
-    dropdownList.style.display = "block";
+    dropdownList.style.display = "block";<br/>
     // Afficher la liste déroulante
     dropdownList2.style.display = "block";
 }
@@ -94,31 +94,25 @@ function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
     const themeFilter = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
     const etatFilter = document.getElementById("etatFilter").value; // Converti en minuscules
-    
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
         const row = tableBody.rows[i];
         const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
         const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
         const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
-        
         // Affiche ou masque la ligne en fonction des filtres sélectionnés
         const afficherLigne =
             (themeFilter === "toutes" || themeFilter === themeValue) &&
             (etatFilter === "tous" || etatFilter === etatValue);
-
         // Met à jour la visibilité de la ligne
         row.style.display = afficherLigne ? "" : "none";
-    }
-    
+    } 
 }
 
 // Ajoutez une fonction pour sauvegarder les états intermédiaires
 function sauvegarderEtatsIntermediaires() {
-    
     // Récupérez les états intermédiaires depuis le tableau
     const etatsIntermediaires = recupereEtatsIntermediaires();
-
     // Enregistrez les états intermédiaires dans IndexedDB
     enregistrerEtatsIntermediaires(etatsIntermediaires);
 }
@@ -127,7 +121,6 @@ function sauvegarderEtatsIntermediaires() {
 function recupereEtatsIntermediaires() {
     const tableBody = document.querySelector("#dataTable tbody");
     const etatsIntermediaires = [];
-
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
         const row = tableBody.rows[i];
@@ -135,7 +128,6 @@ function recupereEtatsIntermediaires() {
         const value = row.cells[1].textContent;
         const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
         const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
-
         // Stocker l'état intermédiaire dans un objet
         etatsIntermediaires.push({
             theme: theme,
@@ -143,7 +135,6 @@ function recupereEtatsIntermediaires() {
             etat: etat,
         });
     }
-
     return etatsIntermediaires;
 }
 
@@ -157,19 +148,15 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
 
     request.onsuccess = function (event) {
         const db = event.target.result;
-
         // Commencez une transaction de lecture/écriture
         const transaction = db.transaction(["etatsIntermediaires"], "readwrite");
         const objectStore = transaction.objectStore("etatsIntermediaires");
-
         // Ajoutez chaque état intermédiaire à l'object store
         etatsIntermediaires.forEach(etat => {
             const request = objectStore.add(etat);
-
             request.onsuccess = function (event) {
                 console.log("État intermédiaire enregistré avec succès");
             };
-
             request.onerror = function (event) {
                 console.log("Erreur lors de l'enregistrement de l'état intermédiaire :", event.target.errorCode);
             };
