@@ -47,7 +47,13 @@
     </select>
 </label>
     
-
+<label>
+    Trier par thème:
+    <select id="themeSort" onchange="trierCriteres()">
+        <option value="asc">Croissant</option>
+        <option value="desc">Décroissant</option>
+    </select>
+</label>
     
     
     <select id="themeFilter" onchange="filtrerCriteres()" placeholder="Filtrer par thématique">

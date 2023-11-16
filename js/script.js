@@ -244,4 +244,25 @@ function exportToPdf() {
 }
 
 
+function trierCriteres() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const themeSort = document.getElementById("themeSort").value;
 
+    // Convertit la collection de lignes en un tableau pour pouvoir le trier
+    const rowsArray = Array.from(tableBody.rows);
+
+    // Trie le tableau en fonction de la première colonne (thème)
+    rowsArray.sort((a, b) => {
+        const themeA = a.cells[0].textContent.toLowerCase();
+        const themeB = b.cells[0].textContent.toLowerCase();
+        return themeSort === 'asc' ? themeA.localeCompare(themeB) : themeB.localeCompare(themeA);
+    });
+
+    // Efface le contenu du tableau
+    tableBody.innerHTML = "";
+
+    // Ajoute les lignes triées au tableau
+    rowsArray.forEach(row => {
+        tableBody.appendChild(row);
+    });
+}
