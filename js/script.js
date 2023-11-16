@@ -206,40 +206,20 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
 }
 
 function exportToPdf() {
-    // Vérifiez si l'URL est renseignée
-    const urlInput = document.getElementById('urlInput');
-    const url = urlInput.value.trim(); // Trim pour supprimer les espaces inutiles
+  // Sélectionnez l'élément à convertir en PDF
+  const element = document.body;
 
-    if (url === "") {
-        alert("Veuillez entrer une URL avant de générer le PDF.");
-        return; // Quitte la fonction si l'URL n'est pas renseignée
-    }
+  // Options pour la conversion en PDF
+  const options = {
+      margin: 5,
+      filename: 'rapport_audit.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2  },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
 
-    // Créez le contenu du PDF avec pdfmake
-    const pdfContent = {
-        content: [
-            { text: "Rapport d'audit", fontSize: 16, bold: true, margin: [0, 0, 0, 10] },
-            { text: "URL: " + url, margin: [0, 0, 0, 10] }
-        ]
-    };
-
-    // Récupérez les données du tableau
-    const tableBody = document.querySelector("#dataTable tbody");
-
-    // Parcours des lignes du tableau
-    for (let i = 0; i < tableBody.rows.length; i++) {
-        const row = tableBody.rows[i];
-        const theme = row.cells[0].textContent;
-        const value = row.cells[1].textContent;
-        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-        const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
-
-        // Ajoutez les informations au contenu du PDF
-        pdfContent.content.push({ text: `Thème: ${theme}, Value: ${value}, État: ${etat}`, margin: [0, 0, 0, 5] });
-    }
-
-    // Générez et téléchargez le PDF avec pdfmake
-    pdfmake.createPdf(pdfContent).download('rapport_audit.pdf');
+  // Utilisez html2pdf pour générer le PDF
+  html2pdf(element, options);
 }
 
 function trierParEtat() {
