@@ -280,37 +280,27 @@ function trierParEtat() {
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
-    // Trier le tableau en fonction de l'état sélectionné
-    rowsArray.sort((a, b) => {
+    // Fonction de comparaison personnalisée
+    function compareRows(a, b) {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
-        if (etatA && etatB) {
-            return etatA.checked ? -1 : 1;
-        } else if (etatA) {
-            return -1;
-        } else if (etatB) {
-            return 1;
+
+        if (!etatA && !etatB) {
+            return 0; // Les deux sont vides, pas de changement d'ordre
+        } else if (!etatA) {
+            return 1; // Seul a est vide, déplacez-le à la fin
+        } else if (!etatB) {
+            return -1; // Seul b est vide, déplacez-le à la fin
         } else {
-            return 0;
+            return etatA.checked ? -1 : 1;
         }
-    });
+    }
 
-    // Créer un objet pour stocker les lignes triées par état
-    const groupedRows = {};
+    // Trier le tableau en utilisant la fonction de comparaison personnalisée
+    rowsArray.sort(compareRows);
 
-    // Ajouter les lignes triées à l'objet en utilisant l'état comme clé
-    rowsArray.forEach(row => {
-        const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
-        const etatValue = etat ? etat.value : 'other';
-        if (!groupedRows[etatValue]) {
-            groupedRows[etatValue] = [];
-        }
-        groupedRows[etatValue].push(row);
-    });
-
-    // Supprimer toutes les lignes du tableau actuel
-    tableBody.innerHTML = "";
-
+    // ... (le reste du code reste inchangé)
+    
     // Ajouter les lignes triées par état au tableau
     Object.values(groupedRows).forEach(rows => {
         rows.forEach(row => {
@@ -318,4 +308,3 @@ function trierParEtat() {
         });
     });
 }
-
