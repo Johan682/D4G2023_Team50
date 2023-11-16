@@ -207,11 +207,11 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
             const request = objectStore.add(etat);
 
             request.onsuccess = function (event) {
-                console.log("État intermédiaire enregistré avec succès");
+                alert("État intermédiaire enregistré avec succès");
             };
 
             request.onerror = function (event) {
-                console.error("Erreur lors de l'enregistrement de l'état intermédiaire :", event.target.errorCode);
+                alert("Erreur lors de l'enregistrement de l'état intermédiaire :", event.target.errorCode);
             };
         });
     };
