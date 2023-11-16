@@ -45,7 +45,7 @@ function chargementpage() {
 
                     radioInput.type = "radio";
                     radioInput.name = `radio_${field}`;
-                    radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
+    
 
                     label.appendChild(radioInput);
                     label.appendChild(document.createTextNode(` ${optionText}`));
