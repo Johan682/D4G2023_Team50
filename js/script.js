@@ -265,15 +265,15 @@ function exportToPdf() {
 
 function trierParEtat() {
     const tableBody = document.querySelector("#dataTable tbody");
-    const etatSort = document.getElementById("etatSort").value;
+    const etatSorte = document.getElementById("etatSorte").value;
 
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
     // Trier le tableau en fonction de l'état sélectionné
     rowsArray.sort((a, b) => {
-        const etatA = a.cells[2].querySelector(`input[value=${etatSort}]`);
-        const etatB = b.cells[2].querySelector(`input[value=${etatSort}]`);
+        const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
+        const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
 
         if (etatA && etatB) {
             return etatA.checked ? -1 : 1;
