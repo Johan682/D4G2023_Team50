@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
+                const options = ["Conforme", "En cours de deploiement", "Non conforme", "Non applicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -90,7 +90,7 @@ function calculerScore() {
             }
 
             // Si le critère est non applicable
-            if (selectedValue === "non_applicable") {
+            if (selectedValue === "Non applicable") {
                 critereNonApplicable++;
             }
         }
@@ -126,7 +126,7 @@ function calculerScore() {
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
     const themeFilter = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
-    const etatFilter = document.getElementById("etatFilter").value.toLowerCase(); // Converti en minuscules
+    const etatFilter = document.getElementById("etatFilter").value; // Converti en minuscules
 
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
