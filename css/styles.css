@@ -74,7 +74,8 @@ header {
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: bold;
-    margin-right: 80%;
+    margin-right: 85%;
+    height: 80%;
 }
 
 #etatFilter {

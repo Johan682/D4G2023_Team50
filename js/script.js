@@ -139,35 +139,26 @@ function filtrerCriteres() {
     
 }
 
-function trierTableau() {
+function trierTableauParTheme() {
     const tableBody = document.querySelector("#dataTable tbody");
 
-    // Convertir les valeurs de l'état en un ordre numérique
-    const etatOrder = {
-        conforme: 1,
-        "en cours de deploiement": 2,
-        "non conforme": 3,
-        nonapplicable: 4,
-    };
-
-    // Convertir la collection d'éléments de ligne en un tableau pour le tri
+    // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
-    // Fonction de comparaison pour trier les lignes en fonction de l'état
-    function compareEtat(rowA, rowB) {
-        const etatA = rowA.cells[2].querySelector("input[type=radio]:checked").value;
-        const etatB = rowB.cells[2].querySelector("input[type=radio]:checked").value;
+    // Trier le tableau en fonction du thème (première colonne)
+    rowsArray.sort((a, b) => {
+        const themeA = a.cells[0].textContent.toLowerCase();
+        const themeB = b.cells[0].textContent.toLowerCase();
+        return themeA.localeCompare(themeB);
+    });
 
-        return etatOrder[etatA] - etatOrder[etatB];
-    }
+    // Supprimer toutes les lignes du tableau actuel
+    tableBody.innerHTML = "";
 
-    // Trier le tableau en utilisant la fonction de comparaison
-    rowsArray.sort(compareEtat);
-
-    // Réorganiser les lignes dans le tableau
-    for (let i = 0; i < rowsArray.length; i++) {
-        tableBody.appendChild(rowsArray[i]);
-    }
+    // Ajouter les lignes triées au tableau
+    rowsArray.forEach(row => {
+        tableBody.appendChild(row);
+    });
 }
 
 function enregistrer() {
