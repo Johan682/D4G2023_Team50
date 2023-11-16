@@ -221,7 +221,7 @@ function exportToPdf() {
 }
 
 function trierCriteres() {
-
+alert('Je pete mon crane')
 }
 
 
