@@ -29,9 +29,9 @@ header {
     text-transform: uppercase; /* Convertit le texte en majuscules */
     font-weight: bold; /* Épaisseur de la police */
 }
-.score_contain {
+.scoreContain {
     display: inline-block;
-    position: relative;
+  
 }
 #etatFilter {
     display: none;

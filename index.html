@@ -23,7 +23,7 @@
     <!--Boutons-->
     <button id="restaurer" onclick="restaurerDonnees()">Restaurer les données</button>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
-    <div class="score_contain">
+    <div class="scoreContain">
     <button id="score" onclick="calculerScore()">Score</button>
     <div id="scoreContainer"></div>
     </div>
@@ -43,7 +43,7 @@
 </select>
 
 <select id="etatFilter" onchange="filtrerCriteres()">
-    <option value="" selected>Filtrer par état</option>
+    <option value="" disabled selected>Filtrer par état</option>
     <option value="tous">Tous</option>
     <option value="conforme">Conforme</option>
     <option value="encoursdedeploiement">En cours de déploiement</option>
