@@ -185,28 +185,51 @@ function exportToPdf() {
   html2pdf(element, options);
 }
 
+// Ajoutez un écouteur d'événements au bouton du menu déroulant
+const etatSorteDropdown = document.getElementById("etatSorte");
+etatSorteDropdown.addEventListener("change", trierParEtat);
+
 function trierParEtat() {
     const tableBody = document.querySelector("#dataTable tbody");
-    const etatSorte = document.getElementById("etatSorte").value;
+    const etatSorte = etatSorteDropdown.value; // Utilisez la valeur du menu déroulant
+
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
+
     // Trier le tableau en fonction de l'état sélectionné
     rowsArray.sort((a, b) => {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
-        if (etatA && etatB) {
-            return etatA.checked ? -1 : 1;
-        } else if (etatA) {
-            return -1;
-        } else if (etatB) {
-            return 1;
+
+        if (etatSorte !== "") {
+            // Si un état est sélectionné, affiche d'abord celui qui correspond
+            if (etatA && etatB) {
+                return etatA.checked ? -1 : 1;
+            } else if (etatA) {
+                return -1;
+            } else if (etatB) {
+                return 1;
+            } else {
+                return 0;
+            }
         } else {
-            return 0;
+            // Si le choix est vide, affiche les lignes en regroupant par état
+            const etatAValue = a.cells[2].querySelector("input:checked").value;
+            const etatBValue = b.cells[2].querySelector("input:checked").value;
+
+            if (etatAValue < etatBValue) {
+                return -1;
+            } else if (etatAValue > etatBValue) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
     });
 
     // Supprimer toutes les lignes du tableau actuel
     tableBody.innerHTML = "";
+
     // Ajouter les lignes triées au tableau
     rowsArray.forEach(row => {
         tableBody.appendChild(row);
