@@ -84,7 +84,7 @@ function calculerScore() {
     const score = (critereConforme / (totalCritere - critereNonApplicable))*100;
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
-    scoreContainer.innerHTML = score; // pour afficher le score avec deux décimales
+    scoreContainer.innerHTML = score.toFixed(1); // pour afficher le score avec deux décimales
     dropdownList.style.display = "block"; // Afficher la liste déroulante
     dropdownList2.style.display ="block" // Afficher la liste déroulante
 }
