@@ -82,6 +82,7 @@ function calculerScore() {
     const totalCritere = 79;
     // Calcul du score de conformité
     const score = (critereConforme / (totalCritere - critereNonApplicable))*100;
+    const 
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
     scoreContainer.innerHTML = score.toFixed(1); // pour afficher le score avec deux décimales
@@ -111,6 +112,7 @@ function filtrerCriteres() {
 function sauvegarderEtatsIntermediaires() {
     // Récupérez les états intermédiaires depuis le tableau
     const etatsIntermediaires = recupereEtatsIntermediaires();
+
     // Enregistrez les états intermédiaires dans IndexedDB
     enregistrerEtatsIntermediaires(etatsIntermediaires);
 }
@@ -119,6 +121,7 @@ function sauvegarderEtatsIntermediaires() {
 function recupereEtatsIntermediaires() {
     const tableBody = document.querySelector("#dataTable tbody");
     const etatsIntermediaires = [];
+
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
         const row = tableBody.rows[i];
@@ -126,6 +129,7 @@ function recupereEtatsIntermediaires() {
         const value = row.cells[1].textContent;
         const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
         const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
+
         // Stocker l'état intermédiaire dans un objet
         etatsIntermediaires.push({
             theme: theme,
@@ -133,6 +137,7 @@ function recupereEtatsIntermediaires() {
             etat: etat,
         });
     }
+
     return etatsIntermediaires;
 }
 
@@ -146,29 +151,112 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
 
     request.onsuccess = function (event) {
         const db = event.target.result;
+
         // Commencez une transaction de lecture/écriture
         const transaction = db.transaction(["etatsIntermediaires"], "readwrite");
         const objectStore = transaction.objectStore("etatsIntermediaires");
+
         // Ajoutez chaque état intermédiaire à l'object store
         etatsIntermediaires.forEach(etat => {
             const request = objectStore.add(etat);
+
             request.onsuccess = function (event) {
                 console.log("État intermédiaire enregistré avec succès");
             };
+
             request.onerror = function (event) {
-                console.log("Erreur lors de l'enregistrement de l'état intermédiaire :", event.target.errorCode);
+                console.error("Erreur lors de l'enregistrement de l'état intermédiaire :", event.target.errorCode);
             };
         });
     };
 
     request.onupgradeneeded = function (event) {
         const db = event.target.result;
+
         // Créez un object store si nécessaire
         if (!db.objectStoreNames.contains("etatsIntermediaires")) {
             db.createObjectStore("etatsIntermediaires", { keyPath: "id", autoIncrement: true });
         }
     };
 }
+
+// Ajoutez une fonction pour restaurer les états intermédiaires depuis IndexedDB
+function restaurerEtatsIntermediaires() {
+    const request = window.indexedDB.open("EtatsIntermediairesDB", 1);
+
+    request.onerror = function (event) {
+        console.error("Erreur lors de l'ouverture de la base de données :", event.target.errorCode);
+    };
+
+    request.onsuccess = function (event) {
+        const db = event.target.result;
+
+        // Commencez une transaction de lecture
+        const transaction = db.transaction(["etatsIntermediaires"], "readonly");
+        const objectStore = transaction.objectStore("etatsIntermediaires");
+
+        // Ouvrez un curseur pour parcourir les données
+        const cursorRequest = objectStore.openCursor();
+
+        cursorRequest.onsuccess = function (event) {
+            const cursor = event.target.result;
+
+            // Si un enregistrement est trouvé, ajoutez-le au tableau
+            if (cursor) {
+                const etat = cursor.value;
+                ajouterEtatAuTableau(etat);
+                // Passez à l'enregistrement suivant
+                cursor.continue();
+            }
+        };
+    };
+
+    request.onupgradeneeded = function (event) {
+        // Cette partie peut être laissée vide car nous ne mettons à jour la base de données que si nécessaire
+    };
+}
+
+// Fonction pour ajouter un état au tableau
+function ajouterEtatAuTableau(etat) {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const row = tableBody.insertRow();
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+
+    cell1.textContent = etat.theme;
+    cell2.textContent = etat.value;
+
+    // Vous devez gérer la création du fieldset et des boutons radio ici en fonction de l'état
+    // Pour l'instant, je suppose que vous avez une fonction addRowToTable comme dans votre code d'origine
+
+    // Ajoutez une nouvelle ligne pour chaque état restauré
+    addRowToTable(etat.theme, etat.value);
+
+    // Définissez l'état radio en fonction de l'état restauré
+    const radioInputs = cell3.querySelectorAll("input[type=radio]");
+    radioInputs.forEach(input => {
+        if (input.value === etat.etat) {
+            input.checked = true;
+        }
+    });
+}
+
+// Utilisez cette fonction lorsque vous souhaitez restaurer les états intermédiaires
+function restaurer() {
+    // Effacez le tableau actuel
+    clearTable();
+
+    // Restaurez les états intermédiaires depuis IndexedDB
+    restaurerEtatsIntermediaires();
+}
+
+// Fonction pour effacer le tableau
+function clearTable() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    tableBody.innerHTML = "";
+}
+
 
 function exportToPdf() {
   // Sélectionnez l'élément à convertir en PDF
@@ -192,42 +280,49 @@ function trierParEtat() {
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
-    // Trier le tableau en fonction de l'état sélectionné
-    rowsArray.sort((a, b) => {
-        const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
-        const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
-        if (etatA && etatB) {
-            return etatA.checked ? -1 : 1;
-        } else if (etatA) {
-            return -1;
-        } else if (etatB) {
-            return 1;
-        } else {
-            return 0;
-        }
+    // Filtrer les lignes qui ont un état vide
+    const filteredRows = rowsArray.filter(row => {
+        const etatValue = row.cells[2].querySelector("input:checked")?.value;
+        return etatValue !== undefined && etatValue !== "";
     });
 
-    // Créer un objet pour stocker les lignes triées par état
-    const groupedRows = {};
+    // Trier le tableau en fonction de l'état sélectionné
+    filteredRows.sort((a, b) => {
+        const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
+        const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
 
-    // Ajouter les lignes triées à l'objet en utilisant l'état comme clé
-    rowsArray.forEach(row => {
-        const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
-        const etatValue = etat ? etat.value : 'other';
-        if (!groupedRows[etatValue]) {
-            groupedRows[etatValue] = [];
+        if (etatSorte !== "") {
+            // Si un état est sélectionné, affiche d'abord celui qui correspond
+            if (etatA && etatB) {
+                return etatA.checked ? -1 : 1;
+            } else if (etatA) {
+                return -1;
+            } else if (etatB) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            // Si le choix est vide, affiche les lignes en regroupant par état
+            const etatAValue = a.cells[2].querySelector("input:checked").value;
+            const etatBValue = b.cells[2].querySelector("input:checked").value;
+
+            if (etatAValue < etatBValue) {
+                return -1;
+            } else if (etatAValue > etatBValue) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
-        groupedRows[etatValue].push(row);
     });
 
     // Supprimer toutes les lignes du tableau actuel
     tableBody.innerHTML = "";
 
-    // Ajouter les lignes triées par état au tableau
-    Object.values(groupedRows).forEach(rows => {
-        rows.forEach(row => {
-            tableBody.appendChild(row);
-        });
+    // Ajouter les lignes triées au tableau
+    filteredRows.forEach(row => {
+        tableBody.appendChild(row);
     });
 }
 
