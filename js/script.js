@@ -29,7 +29,7 @@ function chargementpage() {
                 fieldset.id = `fieldset_${field}`;
 
                 const legend = document.createElement("legend");
-                //legend.textContent = "Statut du critère";
+                
 
                 fieldset.appendChild(legend);
 
@@ -45,7 +45,7 @@ function chargementpage() {
 
                     radioInput.type = "radio";
                     radioInput.name = `radio_${field}`;
-                    radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
+                    radioInput.value = optionText.toLowerCase();
 
                     label.appendChild(radioInput);
                     label.appendChild(document.createTextNode(` ${optionText}`));
