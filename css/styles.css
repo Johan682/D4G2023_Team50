@@ -38,6 +38,7 @@
 .scoreContain {
     position: relative;
     display: inline-block; /* Utiliser le modèle de boîte flexible pour aligner les éléments sur la même ligne */
+    align-items: right;
 }
 
 /* Style pour le bouton score */
