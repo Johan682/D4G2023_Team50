@@ -163,9 +163,10 @@ function enregistrer() {
             const tableBody = document.querySelector("#dataTable tbody");
 
     // Exemple : stocker les réponses intermédiaires dans un tableau
-    const reponses = [];
+    
 
     for (let i = 0; i < tableBody.rows.length; i++) {
+        const reponses = [];
         const row = tableBody.rows[i];
         const theme = row.cells[0].textContent;
         const value = row.cells[1].textContent;
