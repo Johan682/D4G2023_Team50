@@ -32,7 +32,8 @@
     </div>
     <button id="sauvegarder" onclick="sauvegarderEtatsIntermediaires()">Sauvegarder les états intermédiaires</button> 
     <button id="pdf" onclick="exportToPdf()">Génerer PDF</button>
-    
+     <!--Fin de boutons-->
+    <!--Filtre-->
     <label for="etatSorte">Trier par état :</label>
     <select id="etatSorte" onchange="trierParEtat()">
     <option value="" disabled="" selected="">Sélectionner un état</option>
@@ -41,9 +42,6 @@
     <option value="nonconforme">Non conforme</option>
     <option value="nonapplicable">Non applicable</option>
     </select>
-    </div>
-    <!--Fin de boutons-->
-    <!--Filtre-->
 
     <label><select id="etatFilter" onchange="filtrerCriteres()">
         <option value="" disabled selected>Filtrer vos états</option>
@@ -54,7 +52,7 @@
         <option value="nonapplicable">Non applicable</option>
     </select>
 </label>
-    
+</div>
     <select id="themeFilter" onchange="filtrerCriteres()" placeholder="Filtrer par thématique">
     <option value="" disabled selected>Filtrer par thématique</option>
     <option value="toutes">Toutes</option>
