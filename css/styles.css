@@ -5,7 +5,7 @@
     margin-right: 10%;
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f5fff7; /* Couleur de fond du conteneur principal */
+    background-color:  #f9fff7 ; /* Couleur de fond du conteneur principal */
     border-radius: 8px; /* Coins arrondis */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
