@@ -190,12 +190,10 @@ function trierParEtat() {
     const etatSorte = document.getElementById("etatSorte").value;
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
-
     // Trier le tableau en fonction de l'état sélectionné
     rowsArray.sort((a, b) => {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
-
         if (etatA && etatB) {
             return etatA.checked ? -1 : 1;
         } else if (etatA) {
@@ -207,26 +205,10 @@ function trierParEtat() {
         }
     });
 
-    // Séparer les lignes correspondant à l'état sélectionné
-    const selectedStateRows = rowsArray.filter(row => {
-        const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
-        return etat && etat.checked;
-    });
-
-    // Séparer les lignes non liées à l'état sélectionné
-    const unselectedStateRows = rowsArray.filter(row => {
-        const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
-        return !etat || !etat.checked;
-    });
-
-    // Fusionner les deux groupes
-    const sortedRows = [...selectedStateRows, ...unselectedStateRows];
-
     // Supprimer toutes les lignes du tableau actuel
     tableBody.innerHTML = "";
-
     // Ajouter les lignes triées au tableau
-    sortedRows.forEach(row => {
+    rowsArray.forEach(row => {
         tableBody.appendChild(row);
     });
 }
