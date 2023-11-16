@@ -107,24 +107,67 @@ function filtrerCriteres() {
     } 
 }
 
-function enregistrerEtatsIntermediaires(etatsIntermediaires) {
-    // Vérifiez si le localStorage est pris en charge par le navigateur
-    if (typeof(Storage) !== "undefined") {
-        // Récupérez les données existantes ou initialisez un tableau vide
-        const data = JSON.parse(localStorage.getItem('etatsIntermediaires')) || [];
+// Ajoutez une fonction pour sauvegarder les états intermédiaires
+function sauvegarderEtatsIntermediaires() {
+    // Récupérez les états intermédiaires depuis le tableau
+    const etatsIntermediaires = recupereEtatsIntermediaires();
+    // Enregistrez les états intermédiaires dans IndexedDB
+    enregistrerEtatsIntermediaires(etatsIntermediaires);
+}
 
-        // Ajoutez chaque état intermédiaire au tableau
-        etatsIntermediaires.forEach(etat => {
-            data.push(etat);
+// Fonction pour récupérer les états intermédiaires depuis le tableau
+function recupereEtatsIntermediaires() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const etatsIntermediaires = [];
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const theme = row.cells[0].textContent;
+        const value = row.cells[1].textContent;
+        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
+        // Stocker l'état intermédiaire dans un objet
+        etatsIntermediaires.push({
+            theme: theme,
+            value: value,
+            etat: etat,
         });
-
-        // Stockez le tableau mis à jour dans le localStorage
-        localStorage.setItem('etatsIntermediaires', JSON.stringify(data));
-
-        console.log("États intermédiaires enregistrés avec succès dans le localStorage");
-    } else {
-        console.error("Le localStorage n'est pas pris en charge par votre navigateur.");
     }
+    return etatsIntermediaires;
+}
+
+// Fonction pour enregistrer les états intermédiaires dans IndexedDB
+function enregistrerEtatsIntermediaires(etatsIntermediaires) {
+    const request = window.indexedDB.open("EtatsIntermediairesDB", 1);
+
+    request.onerror = function (event) {
+        console.error("Erreur lors de l'ouverture de la base de données :", event.target.errorCode);
+    };
+
+    request.onsuccess = function (event) {
+        const db = event.target.result;
+        // Commencez une transaction de lecture/écriture
+        const transaction = db.transaction(["etatsIntermediaires"], "readwrite");
+        const objectStore = transaction.objectStore("etatsIntermediaires");
+        // Ajoutez chaque état intermédiaire à l'object store
+        etatsIntermediaires.forEach(etat => {
+            const request = objectStore.add(etat);
+            request.onsuccess = function (event) {
+                console.log("État intermédiaire enregistré avec succès");
+            };
+            request.onerror = function (event) {
+                console.log("Erreur lors de l'enregistrement de l'état intermédiaire :", event.target.errorCode);
+            };
+        });
+    };
+
+    request.onupgradeneeded = function (event) {
+        const db = event.target.result;
+        // Créez un object store si nécessaire
+        if (!db.objectStoreNames.contains("etatsIntermediaires")) {
+            db.createObjectStore("etatsIntermediaires", { keyPath: "id", autoIncrement: true });
+        }
+    };
 }
 
 function exportToPdf() {
@@ -154,7 +197,7 @@ function trierParEtat() {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
         if (etatA && etatB) {
-            return etatA.checked ? 1 : -1; // Inverser l'ordre
+            return etatA.checked ? -1 : 1;
         } else if (etatA) {
             return -1;
         } else if (etatB) {
@@ -187,3 +230,4 @@ function trierParEtat() {
         });
     });
 }
+
