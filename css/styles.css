@@ -3,6 +3,7 @@
     margin-left:10%;
     margin-right:10%;
     margin-top:3%;
+    padding: 20%;
     text-align: center;
     background-color: #f9fff7;
 }
@@ -28,11 +29,13 @@
 /* Style pour le conteneur scoreContain */
 .scoreContain {
     margin-left: 50%;
+    padding: 10%;
 }
 
 /* Style pour le bouton score */
 #score {
     margin-right: 40px;
+    padding: 10%;
 }
 
 /* Style pour le conteneur scoreContainer */

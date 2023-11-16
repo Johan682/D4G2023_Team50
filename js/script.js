@@ -170,6 +170,6 @@ function filtrerCriteres() {
         // Ajouter les lignes triées au tableau
         lignesTrie.forEach(row => tableBody.appendChild(row));
     }
-    trierTableau(0, true);
+    trierTableau(2, true);
 }
 
