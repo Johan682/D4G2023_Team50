@@ -140,4 +140,34 @@ function filtrerCriteres() {
     
 }
 
+function trierCriteres() {
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    // Convertir les valeurs de l'état en un ordre numérique
+    const etatOrder = {
+        conforme: 1,
+        "en cours de deploiement": 2,
+        "non conforme": 3,
+        nonapplicable: 4,
+    };
+
+    // Convertir la collection d'éléments de ligne en un tableau pour le tri
+    const rowsArray = Array.from(tableBody.rows);
+
+    // Fonction de comparaison pour trier les lignes en fonction de l'état
+    function compareEtat(rowA, rowB) {
+        const etatA = rowA.cells[2].querySelector("input[type=radio]:checked").value;
+        const etatB = rowB.cells[2].querySelector("input[type=radio]:checked").value;
+
+        return etatOrder[etatA] - etatOrder[etatB];
+    }
+
+    // Trier le tableau en utilisant la fonction de comparaison
+    rowsArray.sort(compareEtat);
+
+    // Réorganiser les lignes dans le tableau
+    for (let i = 0; i < rowsArray.length; i++) {
+        tableBody.appendChild(rowsArray[i]);
+    }
+}
 
