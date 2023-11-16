@@ -90,7 +90,7 @@ function calculerScore() {
             }
 
             // Si le critère est non applicable
-            if (selectedValue === "non_applicable") {
+            if (selectedValue === "nonapplicable") {
                 critereNonApplicable++;
             }
         }
