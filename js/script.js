@@ -172,7 +172,25 @@ function exportToPdf() {
 }
 
 function trierCriteres(etat) {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const themetrier = document.getElementById("themetrier").value.toLowerCase(); // Converti en minuscules
+    const etattrier = document.getElementById("etattrier").value; // Converti en minuscules
 
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
+        const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
+
+        // Affiche ou masque la ligne en fonction des filtres sélectionnés
+        const afficherLigne =
+            (themetrier === "toutes" || themetrier === themeValue) &&
+            (etattrier === "tous" || etattrier === etatValue);
+
+        // Met à jour la visibilité de la ligne
+        row.style.display = afficherLigne ? "" : "none";
+    }
 }
 
 
