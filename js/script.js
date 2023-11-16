@@ -200,7 +200,7 @@ function resetTable(tableBody) {
     });
 }
 
-function genererPDF() {
+function genpdf() {
     // Exemple : utiliser jsPDF pour générer un PDF
     const doc = new jsPDF();
 
