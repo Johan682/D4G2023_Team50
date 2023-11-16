@@ -299,8 +299,22 @@ function trierParEtat() {
     // Trier le tableau en utilisant la fonction de comparaison personnalisée
     rowsArray.sort(compareRows);
 
-    // ... (le reste du code reste inchangé)
-    
+    // Créer un objet pour stocker les lignes triées par état
+    const groupedRows = {};
+
+    // Ajouter les lignes triées à l'objet en utilisant l'état comme clé
+    rowsArray.forEach(row => {
+        const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
+        const etatValue = etat ? etat.value : 'other';
+        if (!groupedRows[etatValue]) {
+            groupedRows[etatValue] = [];
+        }
+        groupedRows[etatValue].push(row);
+    });
+
+    // Supprimer toutes les lignes du tableau actuel
+    tableBody.innerHTML = "";
+
     // Ajouter les lignes triées par état au tableau
     Object.values(groupedRows).forEach(rows => {
         rows.forEach(row => {
