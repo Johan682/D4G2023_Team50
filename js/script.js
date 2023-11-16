@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["conforme", "en cours de deploiement", "nonconforme", "nonapplicable"];
+                const options = ["Conforme", "EnCoursDeDeploiement", "NonConforme", "NonApplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -113,7 +113,7 @@ function calculerScore() {
     
         // Ajouter un gestionnaire d'événement de clic au bouton
         scoreButton.addEventListener("click", function () {
-            dropdownList.style.display = "none";
+            //dropdownList.style.display = "none";
             // Afficher ou masquer la liste déroulante en fonction de son état actuel
             if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
                 dropdownList.style.display = "block";
@@ -127,7 +127,7 @@ function calculerScore() {
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
     const themeFilter = document.getElementById("themeFilter").value.toLowerCase(); // Converti en minuscules
-    const etatFilter = document.getElementById("etatFilter").value.toLowerCase(); // Converti en minuscules
+    const etatFilter = document.getElementById("etatFilter").value; // Converti en minuscules
 
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
