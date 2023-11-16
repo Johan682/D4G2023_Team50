@@ -226,15 +226,23 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
     };
 }
 
-const jsPDF = require('jspdf'); 
-
 function exportToPdf() {
-    // Créez une instance de jsPDF
-    const doc = new jsPDF();
+    // Vérifiez si l'URL est renseignée
+    const urlInput = document.getElementById('urlInput');
+    const url = urlInput.value.trim(); // Trim pour supprimer les espaces inutiles
 
-    // Ajoutez du texte au PDF
-    doc.text("Rapport d'audit", 20, 10);
-    doc.text("URL: " + document.getElementById('urlInput').value, 20, 20);
+    if (url === "") {
+        alert("Veuillez entrer une URL avant de générer le PDF.");
+        return; // Quitte la fonction si l'URL n'est pas renseignée
+    }
+
+    // Créez le contenu du PDF avec pdfmake
+    const pdfContent = {
+        content: [
+            { text: "Rapport d'audit", fontSize: 16, bold: true, margin: [0, 0, 0, 10] },
+            { text: "URL: " + url, margin: [0, 0, 0, 10] }
+        ]
+    };
 
     // Récupérez les données du tableau
     const tableBody = document.querySelector("#dataTable tbody");
@@ -247,12 +255,12 @@ function exportToPdf() {
         const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
         const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
 
-        // Ajoutez les informations au PDF
-        doc.text(`Thème: ${theme}, Value: ${value}, État: ${etat}`, 20, 30 + i * 10);
+        // Ajoutez les informations au contenu du PDF
+        pdfContent.content.push({ text: `Thème: ${theme}, Value: ${value}, État: ${etat}`, margin: [0, 0, 0, 5] });
     }
 
-    // Sauvegardez le PDF avec un nom de fichier
-    doc.save("rapport_audit.pdf");
+    // Générez et téléchargez le PDF avec pdfmake
+    pdfmake.createPdf(pdfContent).download('rapport_audit.pdf');
 }
 
 function trierParEtat() {
