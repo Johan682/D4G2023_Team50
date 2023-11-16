@@ -108,6 +108,22 @@ function calculerScore() {
     // Mise à jour du contenu de l'élément avec le score
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const scoreButton = document.getElementById("score");
+        const dropdownList = document.getElementById("etatFilter");
+    
+        // Ajouter un gestionnaire d'événement de clic au bouton
+        scoreButton.addEventListener("click", function () {
+            // Afficher ou masquer la liste déroulante en fonction de son état actuel
+            if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
+                dropdownList.style.display = "block";
+            } else {
+                dropdownList.style.display = "none";
+            }
+        });
+    });
+    
+
 }
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
