@@ -1,5 +1,3 @@
-
-
 function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
@@ -60,8 +58,6 @@ function chargementpage() {
         });
 }
 
-
-
 function calculerScore() {
     const tableBody = document.querySelector("#dataTable tbody");
 
@@ -115,7 +111,6 @@ function calculerScore() {
             }
         });
     
-
 }
 function filtrerCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
@@ -140,7 +135,7 @@ function filtrerCriteres() {
     
 }
 
-function trierCriteres() {
+function trierTableau() {
     const tableBody = document.querySelector("#dataTable tbody");
 
     // Convertir les valeurs de l'état en un ordre numérique
