@@ -274,5 +274,5 @@ function trierCriteres() {
         row.style.display = afficherLigne ? "" : "none";
     }
 }
-document.getElementById("etattrier").onchange = trierCriteres;
+
 
