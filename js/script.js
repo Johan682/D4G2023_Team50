@@ -222,32 +222,24 @@ function exportToPdf() {
 
 function trierCriteres(etat) {
     const tableBody = document.querySelector("#dataTable tbody");
+    const themeFilter = document.getElementById("etatFilter").value.toLowerCase(); // Converti en minuscules
+    const etatFilter = document.getElementById("Filtre_Thema").value; // Converti en minuscules
 
-    // Convertir les lignes du tableau en un tableau
-    const rowsArray = Array.from(tableBody.rows);
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
+        const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
 
-    // Trier le tableau en fonction de l'état (troisième colonne)
-    rowsArray.sort((a, b) => {
-        const etatA = a.cells[2].querySelector("input[type=radio]:checked").value;
-        const etatB = b.cells[2].querySelector("input[type=radio]:checked").value;
+        // Affiche ou masque la ligne en fonction des filtres sélectionnés
+        const afficherLigne =
+            (themeFilter === "toutes" || themeFilter === themeValue) &&
+            (etatFilter === "tous" || etatFilter === etatValue);
 
-        // Vous pouvez ajuster l'ordre de tri en fonction de vos besoins
-        if (etatA < etatB) {
-            return -1;
-        } else if (etatA > etatB) {
-            return 1;
-        } else {
-            return 0;
-        }
-    });
-
-    // Supprimer toutes les lignes du tableau actuel
-    tableBody.innerHTML = "";
-
-    // Ajouter les lignes triées au tableau
-    rowsArray.forEach(row => {
-        tableBody.appendChild(row);
-    });
+        // Met à jour la visibilité de la ligne
+        row.style.display = afficherLigne ? "" : "none";
+    }
 }
 
 
