@@ -28,10 +28,10 @@ function chargementpage() {
                 const fieldset = document.createElement("fieldset");
                 fieldset.id = `fieldset_${field}`;
 
-                const legend = document.createElement("legend");
-                legend.textContent = "Statut du critère";
+                //const legend = document.createElement("legend");
+                //legend.textContent = "Statut du critère";
 
-                fieldset.appendChild(legend);
+               // fieldset.appendChild(legend);
 
                 // Création du formulaire avec des boutons radio
                 const form = document.createElement("form");
