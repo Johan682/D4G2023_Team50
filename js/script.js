@@ -67,31 +67,7 @@ function chargementpage() {
         });
 }
 
-function filtrerParTheme() {
-    const themeFilter = document.getElementById("themeFilter");
-    const selectedTheme = themeFilter.value.toLowerCase();
 
-    const rows = document.querySelectorAll("#dataTable tbody tr");
-
-    rows.forEach(row => {
-        const theme = row.cells[0].textContent.toLowerCase();
-        row.style.display = selectedTheme === "tous" || theme === selectedTheme ? "" : "none";
-    });
-}
-
-function filtrerParEtat() {
-    const stateFilter = document.getElementById("stateFilter");
-    const selectedState = stateFilter.value;
-
-    const rows = document.querySelectorAll("#dataTable tbody tr");
-
-    rows.forEach(row => {
-        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-        const state = radioInputs.length > 0 ? radioInputs[0].value : "";
-
-        row.style.display = selectedState === "tous" || state === selectedState ? "" : "none";
-    });
-}
 
 function calculerScore() {
     const tableBody = document.querySelector("#dataTable tbody");
