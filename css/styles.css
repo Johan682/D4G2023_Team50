@@ -79,6 +79,9 @@ header {
 #etatFilter {
     display: none;
 }
+#iltrer {
+    display: none;
+}
 
 input,
 select {
