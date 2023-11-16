@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
+                const options = ["Conforme", "Encoursdedeploiement", "Nonconforme", "Nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -107,8 +107,7 @@ function calculerScore() {
 
     // Mise à jour du contenu de l'élément avec le score
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
-
-    document.addEventListener("DOMContentLoaded", function () {
+    
         const scoreButton = document.getElementById("score");
         const dropdownList = document.getElementById("etatFilter");
     
@@ -121,7 +120,6 @@ function calculerScore() {
                 dropdownList.style.display = "none";
             }
         });
-    });
     
 
 }
