@@ -224,8 +224,8 @@ function trierCriteres() {
 
     // Fonction de comparaison pour le tri
     const compareRows = (row1, row2) => {
-        const themeValue1 = row1.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
-        const themeValue2 = row2.cells[0].textContent.toLowerCase().replace(/ /g, "_"); // Converti en minuscules
+        const themeValue1 = row1.cells[0].textContent; // Converti en minuscules
+        const themeValue2 = row2.cells[0].textContent.toLowerCase(); // Converti en minuscules
 
         const etatInputs1 = row1.cells[2].querySelectorAll("input[type=radio]:checked");
         const etatValue1 = etatInputs1.length > 0 ? etatInputs1[0].value : "";
