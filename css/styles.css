@@ -48,6 +48,7 @@
 #scoreContainer {
     border: 1px solid #ccc; /* Ajouter une bordure pour délimiter le div (à titre d'exemple) */
     padding: 10px; /* Ajouter du rembourrage pour un aspect visuel amélioré */
+    width: fit-content;
 }
 
 
