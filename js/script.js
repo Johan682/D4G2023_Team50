@@ -243,7 +243,34 @@ function exportToPdf() {
     html2pdf(element, options);
 }
 
+function trierParEtat() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const etatSort = document.getElementById("etatSort").value;
 
-function trierCriteres() {
+    // Convertir les lignes du tableau en un tableau
+    const rowsArray = Array.from(tableBody.rows);
 
+    // Trier le tableau en fonction de l'état sélectionné
+    rowsArray.sort((a, b) => {
+        const etatA = a.cells[2].querySelector(`input[value=${etatSort}]`);
+        const etatB = b.cells[2].querySelector(`input[value=${etatSort}]`);
+
+        if (etatA && etatB) {
+            return etatA.checked ? -1 : 1;
+        } else if (etatA) {
+            return -1;
+        } else if (etatB) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    // Supprimer toutes les lignes du tableau actuel
+    tableBody.innerHTML = "";
+
+    // Ajouter les lignes triées au tableau
+    rowsArray.forEach(row => {
+        tableBody.appendChild(row);
+    });
 }
