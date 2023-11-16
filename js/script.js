@@ -265,4 +265,5 @@ function trierCriteres() {
     rowsArray.forEach(row => {
         tableBody.appendChild(row);
     });
+    
 }
