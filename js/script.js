@@ -154,7 +154,7 @@ function trierTableauParTheme() {
 }
 
 function exportToPdf() {
-    const element = document.getElementById('app');
+    const element = document.getElementById('html');
     const pdfOptions = {
         margin: 10,
         filename: 'audit_report.pdf',
