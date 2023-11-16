@@ -215,3 +215,25 @@ function exportToPdf() {
     // Utilisez html2pdf pour générer le PDF
     html2pdf(element, options);
 }
+
+function trierTableauParEtat() {
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    // Convertir les lignes du tableau en un tableau
+    const rowsArray = Array.from(tableBody.rows);
+
+    // Trier le tableau en fonction de l'état (troisième colonne)
+    rowsArray.sort((a, b) => {
+        const etatA = a.cells[2].querySelector("input[type=radio]:checked").value;
+        const etatB = b.cells[2].querySelector("input[type=radio]:checked").value;
+        return etatA.localeCompare(etatB);
+    });
+
+    // Supprimer toutes les lignes du tableau actuel
+    tableBody.innerHTML = "";
+
+    // Ajouter les lignes triées au tableau
+    rowsArray.forEach(row => {
+        tableBody.appendChild(row);
+    });
+}
