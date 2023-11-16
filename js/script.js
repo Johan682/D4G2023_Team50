@@ -197,8 +197,6 @@ function resetTable(tableBody) {
 
 }
 
-
-
 function exportToPdf() {
     // Sélectionnez l'élément à convertir en PDF
     const element = document.body;
