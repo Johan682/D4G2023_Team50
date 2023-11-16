@@ -101,6 +101,7 @@ function calculerScore() {
 
     // Calcul du score de conformité
     const score = critereConforme / (totalCritere - critereNonApplicable);
+
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
 
@@ -141,29 +142,7 @@ function filtrerCriteres() {
             (etatFilter === "tous" || etatFilter === etatValue);
 
         // Met à jour la visibilité de la ligne
-       // row.style.display = afficherLigne ? "" : "none";
+        row.style.display = afficherLigne ? "" : "none";
     }
-
-}
-function trierTableauParTheme() {
-    const tableBody = document.querySelector("#dataTable tbody");
-
-    // Convertir les lignes du tableau en un tableau
-    const rowsArray = Array.from(tableBody.rows);
-
-    // Trier le tableau en fonction du thème (première colonne)
-    rowsArray.sort((a, b) => {
-        const themeA = a.cells[0].textContent.toLowerCase();
-        const themeB = b.cells[0].textContent.toLowerCase();
-        return themeA.localeCompare(themeB);
-    });
-
-    // Supprimer toutes les lignes du tableau actuel
-    tableBody.innerHTML = "";
-
-    // Ajouter les lignes triées au tableau
-    rowsArray.forEach(row => {
-        tableBody.appendChild(row);
-    });
 }
 
