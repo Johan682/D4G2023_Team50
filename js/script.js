@@ -208,7 +208,7 @@ function exportToPdf() {
         margin: 5,
         filename: 'rapport_audit.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
+        html2canvas: { scale: 2 , height: 5 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
