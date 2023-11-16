@@ -8,11 +8,6 @@
     <script src="js/script.js"></script>
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.0/dist/html2pdf.bundle.js"></script>
-
-
-    
-
-
     <title>Design4GreenTeam50</title>
 </head>
 <body>
@@ -37,7 +32,7 @@
     <button id="enregistrer" onclick="enregistrer()">Enregistrer les données</button>
     <button id="trier" onclick="trierTableauParTheme()">Trier Tableau</button>
     <button id="pdf" onclick="exportToPdf()">Génerer PDF</button>
-    <button id="filtrer" onclick="trierCriteres()">Filtrer</button>
+    <button id="filtrer" onclick="trierCriteres()">Trier Etat</button>
     </div>
     <!--Fin de boutons-->
     <!--Filtre-->
@@ -53,7 +48,7 @@
 
     <div class="Filtre_Thema">
     <label for="themeFilter">Filtrer par thématique :</label>
-<select id="themeFilter" onchange="filtrerCriteres()" placeholder="Filtrer par thématique">
+    <select id="themeFilter" onchange="filtrerCriteres()" placeholder="Filtrer par thématique">
     <option value="toutes">Toutes</option>
     <option value="Stratégie">Stratégie</option>
     <option value="Spécifications">Spécifications</option>
