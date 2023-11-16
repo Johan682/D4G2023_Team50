@@ -1,10 +1,10 @@
 .body {
     font-family: 'Arial', sans-serif;
-    margin: 3% 10%;
+    margin-left:10%;
+    margin-right:10%;
+    margin-top:3%;
     text-align: center;
     background-color: #f9fff7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 
