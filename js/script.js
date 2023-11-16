@@ -160,7 +160,7 @@ function enregistrer() {
         .then(response => response.json())
         .then(data => {
             // Get the table body to populate data
-            const tableBody = document.querySelector("#dataTable tbody");})
+            const tableBody = document.querySelector("#dataTable tbody");
 
     // Exemple : stocker les réponses intermédiaires dans un tableau
     const reponses = [];
@@ -179,6 +179,7 @@ function enregistrer() {
             etat: etat,
         });
     }
+    })
 
     // Ajouter les réponses intermédiaires à la liste globale
     reponsesIntermediaires.push(reponses);
