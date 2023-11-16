@@ -24,26 +24,28 @@ function chargementpage() {
                 cell1.textContent = field;
                 cell2.innerHTML = value;
 
-                // Création du groupe de boutons radio
-                const radioGroup = document.createElement("form");
+                // Création du formulaire avec des boutons radio
+                const form = document.createElement("form");
+                form.id = "radioGroup";
 
-                const options = ["case1", "case2", "case3", "case4"];
+                const options = ["Conforme", "En cours de déploiement", "Non conforme", "Non applicable"];
 
-                // Ajout des boutons radio au groupe
-                options.forEach(optionValue => {
+                options.forEach(optionText => {
                     const label = document.createElement("label");
-                    const radio = document.createElement("input");
-                    radio.type = "radio";
-                    radio.name = "options";
-                    radio.value = optionValue;
+                    const radioInput = document.createElement("input");
 
-                    label.appendChild(radio);
-                    label.appendChild(document.createTextNode(" " + optionValue));
-                    radioGroup.appendChild(label);
+                    radioInput.type = "radio";
+                    radioInput.name = `radio_${field}`;
+                    radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
+
+                    label.appendChild(radioInput);
+                    label.appendChild(document.createTextNode(` ${optionText}`));
+
+                    form.appendChild(label);
                 });
 
-                // Ajout du groupe de boutons radio à la cellule
-                cell3.appendChild(radioGroup);
+                // Ajout du formulaire à la cellule
+                cell3.appendChild(form);
             }
 
             data.criteres.forEach(critere => {
