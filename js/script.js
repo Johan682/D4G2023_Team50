@@ -173,8 +173,8 @@ function exportToPdf() {
 
 function trierCriteres(etat) {
     const tableBody = document.querySelector("#dataTable tbody");
-    const themeFilter = document.getElementById("etattrier").value.toLowerCase(); // Converti en minuscules
-    const etatFilter = document.getElementById("Filtre_Thema").value; // Converti en minuscules
+    const themetrier = document.getElementById("etattrier").value.toLowerCase(); // Converti en minuscules
+    const themefilter = document.getElementById("Filtre_Thema").value; // Converti en minuscules
 
     // Parcours des lignes du tableau
     for (let i = 0; i < tableBody.rows.length; i++) {
@@ -185,8 +185,8 @@ function trierCriteres(etat) {
 
         // Affiche ou masque la ligne en fonction des filtres sélectionnés
         const afficherLigne =
-            (themeFilter === "toutes" || themeFilter === themeValue) &&
-            (etatFilter === "tous" || etatFilter === etatValue);
+            (themetrier === "toutes" || themetrier === themeValue) &&
+            (themefilter === "tous" || themefilter === etatValue);
 
         // Met à jour la visibilité de la ligne
         row.style.display = afficherLigne ? "" : "none";
