@@ -156,7 +156,11 @@ function trierTableauParTheme() {
 let reponsesIntermediaires = [];
 let reponseFinale = {};
 function enregistrer() {
-    const tableBody = document.querySelector("#dataTable tbody");
+    fetch("referentiel-general-ecoconception-version-v1.json")
+        .then(response => response.json())
+        .then(data => {
+            // Get the table body to populate data
+            const tableBody = document.querySelector("#dataTable tbody");})
 
     // Exemple : stocker les réponses intermédiaires dans un tableau
     const reponses = [];
@@ -215,7 +219,7 @@ function exportToPdf() {
 }
 
 function trierCriteres() {
-   
+
 }
 
 
