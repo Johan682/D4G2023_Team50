@@ -187,7 +187,7 @@ function exportToPdf() {
 
 // Ajoutez un écouteur d'événements au bouton du menu déroulant
 const etatSorteDropdown = document.getElementById("etatSorte");
-etatSorteDropdown.addEventListener("change", trierParEtat);
+
 
 function trierParEtat() {
     const tableBody = document.querySelector("#dataTable tbody");
