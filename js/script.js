@@ -86,7 +86,7 @@ function calculerScore() {
     const scoreContainer = document.getElementById("scoreContainer");
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
     // Afficher la liste déroulante
-    dropdownList.style.display = "block";<br/>
+    dropdownList.style.display = "block";
     // Afficher la liste déroulante
     dropdownList2.style.display = "block";
 }
@@ -165,7 +165,6 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
 
     request.onupgradeneeded = function (event) {
         const db = event.target.result;
-
         // Créez un object store si nécessaire
         if (!db.objectStoreNames.contains("etatsIntermediaires")) {
             db.createObjectStore("etatsIntermediaires", { keyPath: "id", autoIncrement: true });
@@ -176,7 +175,6 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
 function exportToPdf() {
   // Sélectionnez l'élément à convertir en PDF
   const element = document.body;
-
   // Options pour la conversion en PDF
   const options = {
       margin: 5,
@@ -185,7 +183,6 @@ function exportToPdf() {
       html2canvas: { scale: 2  },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
-
   // Utilisez html2pdf pour générer le PDF
   html2pdf(element, options);
 }
@@ -193,15 +190,12 @@ function exportToPdf() {
 function trierParEtat() {
     const tableBody = document.querySelector("#dataTable tbody");
     const etatSorte = document.getElementById("etatSorte").value;
-
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
-
     // Trier le tableau en fonction de l'état sélectionné
     rowsArray.sort((a, b) => {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
-
         if (etatA && etatB) {
             return etatA.checked ? -1 : 1;
         } else if (etatA) {
@@ -215,7 +209,6 @@ function trierParEtat() {
 
     // Supprimer toutes les lignes du tableau actuel
     tableBody.innerHTML = "";
-
     // Ajouter les lignes triées au tableau
     rowsArray.forEach(row => {
         tableBody.appendChild(row);
