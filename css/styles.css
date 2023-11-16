@@ -72,7 +72,7 @@ header {
 }
 
 
-/* Style pour les champs de texte 
+/* Style pour les champs de texte */
 input,
 select {
     width: 100%;
@@ -81,7 +81,7 @@ select {
     box-sizing: border-box;
     border: 1px solid #ccc; 
     border-radius: 4px;
-}*/
+}
 
 /* Style pour les boutons */
 button {
