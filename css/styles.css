@@ -84,7 +84,7 @@ select {
 
 /* Style pour les boutons */
 button {
-    display: inline-block;
+    display: flex;
     padding:15px;
     margin-right: 10px;
     cursor: pointer;

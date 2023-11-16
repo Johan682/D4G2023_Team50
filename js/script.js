@@ -142,7 +142,7 @@ function filtrerCriteres() {
             (etatFilter === "tous" || etatFilter === etatValue);
 
         // Met à jour la visibilité de la ligne
-        row.style.display = afficherLigne ? "" : "none";
+       // row.style.display = afficherLigne ? "" : "none";
     }
 }
 
