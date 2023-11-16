@@ -29,7 +29,21 @@
     </div></div>
     <button id="enregistrer" onclick="enregistrer()">Enregistrer les données</button>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
-    <button id="tri" onclick="trierTableau();">Trier Tableau</button>
+    <button id="sortButton">Trier les critères</button>
+
+<!-- Add this script in your JavaScript file to handle the button click -->
+<script>
+    // Assuming your existing code and the trierCriteres function are already defined
+
+    // Get the button element
+    const sortButton = document.getElementById("sortButton");
+
+    // Add a click event listener to the button
+    sortButton.addEventListener("click", function () {
+        // Call the trierCriteres function when the button is clicked
+        trierTableau();
+    });
+</script>
     </div>
     <!--Fin de boutons-->
     <!--Filtre-->
