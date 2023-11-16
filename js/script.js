@@ -82,10 +82,10 @@ function calculerScore() {
     const totalCritere = 79;
     // Calcul du score de conformité
     const score = (critereConforme / (totalCritere - critereNonApplicable))*100;
-    const 
+    
     // Affichage du score dans l'élément HTML
     const scoreContainer = document.getElementById("scoreContainer");
-    scoreContainer.innerHTML = score.toFixed(1); // pour afficher le score avec deux décimales
+    scoreContainer.innerHTML = pa"score.toFixed(1)" + "%"; // pour afficher le score avec deux décimales
     dropdownList.style.display = "block"; // Afficher la liste déroulante
     dropdownList2.style.display ="block" // Afficher la liste déroulante
 }
@@ -280,49 +280,42 @@ function trierParEtat() {
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
-    // Filtrer les lignes qui ont un état vide
-    const filteredRows = rowsArray.filter(row => {
-        const etatValue = row.cells[2].querySelector("input:checked")?.value;
-        return etatValue !== undefined && etatValue !== "";
-    });
-
     // Trier le tableau en fonction de l'état sélectionné
-    filteredRows.sort((a, b) => {
+    rowsArray.sort((a, b) => {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
-
-        if (etatSorte !== "") {
-            // Si un état est sélectionné, affiche d'abord celui qui correspond
-            if (etatA && etatB) {
-                return etatA.checked ? -1 : 1;
-            } else if (etatA) {
-                return -1;
-            } else if (etatB) {
-                return 1;
-            } else {
-                return 0;
-            }
+        if (etatA && etatB) {
+            return etatA.checked ? -1 : 1;
+        } else if (etatA) {
+            return -1;
+        } else if (etatB) {
+            return 1;
         } else {
-            // Si le choix est vide, affiche les lignes en regroupant par état
-            const etatAValue = a.cells[2].querySelector("input:checked").value;
-            const etatBValue = b.cells[2].querySelector("input:checked").value;
-
-            if (etatAValue < etatBValue) {
-                return -1;
-            } else if (etatAValue > etatBValue) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return 0;
         }
+    });
+
+    // Créer un objet pour stocker les lignes triées par état
+    const groupedRows = {};
+
+    // Ajouter les lignes triées à l'objet en utilisant l'état comme clé
+    rowsArray.forEach(row => {
+        const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
+        const etatValue = etat ? etat.value : 'other';
+        if (!groupedRows[etatValue]) {
+            groupedRows[etatValue] = [];
+        }
+        groupedRows[etatValue].push(row);
     });
 
     // Supprimer toutes les lignes du tableau actuel
     tableBody.innerHTML = "";
 
-    // Ajouter les lignes triées au tableau
-    filteredRows.forEach(row => {
-        tableBody.appendChild(row);
+    // Ajouter les lignes triées par état au tableau
+    Object.values(groupedRows).forEach(rows => {
+        rows.forEach(row => {
+            tableBody.appendChild(row);
+        });
     });
 }
 
