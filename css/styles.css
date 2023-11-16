@@ -26,19 +26,19 @@
 }
 
 /* Style pour le conteneur scoreContain */
-.scoreContain {
+/*.scoreContain {
     margin-left: 100%;
 
 }
 
 /* Style pour le bouton score */
-#score {
+/*#score {
     margin-right: 100%;
    
 }
 
 /* Style pour le conteneur scoreContainer */
-#scoreContainer {
+/*#scoreContainer {
     border: 1px solid #ccc;
     width: 10%;
     border-radius: 4px;
