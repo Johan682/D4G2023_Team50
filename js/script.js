@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["Conforme", "EnCoursDeDeploiement", "NonConforme", "NonApplicable"];
+                const options = ["conforme", "encoursdedeploiement", "nonconforme", "nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -45,7 +45,7 @@ function chargementpage() {
 
                     radioInput.type = "radio";
                     radioInput.name = `radio_${field}`;
-    
+                    radioInput.value = optionText.toLowerCase().replace(/ /g, "_");
 
                     label.appendChild(radioInput);
                     label.appendChild(document.createTextNode(` ${optionText}`));
