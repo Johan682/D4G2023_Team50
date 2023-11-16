@@ -34,6 +34,23 @@
     font-size: 14px;
 }
 
+/* Style pour le conteneur scoreContain */
+.scoreContain {
+    display: flex; /* Utiliser le modèle de boîte flexible pour aligner les éléments sur la même ligne */
+    align-items: center; /* Centrer les éléments verticalement */
+}
+
+/* Style pour le bouton score */
+#score {
+    margin-right: 10px; /* Marge à droite pour séparer le bouton du div */
+}
+
+/* Style pour le conteneur scoreContainer */
+#scoreContainer {
+    border: 1px solid #ccc; /* Ajouter une bordure pour délimiter le div (à titre d'exemple) */
+    padding: 10px; /* Ajouter du rembourrage pour un aspect visuel amélioré */
+}
+
 
 
 header {
