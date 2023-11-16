@@ -227,20 +227,30 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
 }
 
 function exportToPdf() {
-    // Sélectionnez l'élément à convertir en PDF
-    const element = document.body;
+    // Créez une instance de jsPDF
+    const doc = new jsPDF();
 
-    // Options pour la conversion en PDF
-    const options = {
-        margin: 5,
-        filename: 'rapport_audit.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2  },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    // Ajoutez du texte au PDF
+    doc.text("Rapport d'audit", 20, 10);
+    doc.text("URL: " + document.getElementById('urlInput').value, 20, 20);
 
-    // Utilisez html2pdf pour générer le PDF
-    html2pdf(element, options);
+    // Récupérez les données du tableau
+    const tableBody = document.querySelector("#dataTable tbody");
+
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const theme = row.cells[0].textContent;
+        const value = row.cells[1].textContent;
+        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
+
+        // Ajoutez les informations au PDF
+        doc.text(`Thème: ${theme}, Value: ${value}, État: ${etat}`, 20, 30 + i * 10);
+    }
+
+    // Sauvegardez le PDF avec un nom de fichier
+    doc.save("rapport_audit.pdf");
 }
 
 function trierParEtat() {
