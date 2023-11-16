@@ -15,11 +15,7 @@
         </div>  
     </header>
     <div class="body">
-    <!-- URL -->
-    <label for="urlInput">URL :</label>
-    <input type="text" id="urlInput" placeholder="Entrez l'URL">
 
-    <!-- Fin partie URL -->
     <!--Boutons-->
     <button id="restaurer" onclick="restaurerDonnees()">Restaurer les données</button>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
@@ -29,7 +25,10 @@
     </div>
     <!--Fin de boutons-->
     <!--Filtre-->
-
+    <!--url-->
+    <label for="urlInput">URL :</label>
+    <input type="text" id="urlInput" placeholder="Entrez l'URL">
+    <!--fin url-->
     <select id="etatFilter" onchange="filtrerCriteres()">
         <option value="" disabled selected>Filtrer vos états</option>
         <option value="tous">Tous</option>
