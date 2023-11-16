@@ -7,6 +7,28 @@
     text-align: center;
 }
 
+/* Style pour le conteneur div */
+div {
+    margin-bottom: 15px; /* Espacement en bas du conteneur */
+}
+
+/* Style pour l'étiquette du sélecteur */
+label {
+    display: block; /* Afficher l'étiquette en tant que bloc pour ajouter de l'espace en dessous */
+    margin-bottom: 5px; /* Espacement en bas de l'étiquette */
+}
+
+/* Style pour le sélecteur lui-même */
+select {
+    width: 100%; /* Largeur à 100% du conteneur parent */
+    padding: 8px; /* Remplissage intérieur du sélecteur */
+    font-size: 14px; /* Taille de la police */
+    border: 1px solid #ccc; /* Bordure grise de 1 pixel avec couleur de fond */
+    border-radius: 4px; /* Coins arrondis */
+    box-sizing: border-box; /* La largeur et la hauteur incluent la bordure et le remplissage */
+}
+
+
 header {
     background-color: #00561b; /* Couleur de fond du header */
     color: #fff; /* Couleur du texte du header */
