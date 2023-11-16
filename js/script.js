@@ -108,21 +108,26 @@ function calculerScore() {
     // Mise à jour du contenu de l'élément avec le score
     scoreContainer.innerHTML = score.toFixed(2); // pour afficher le score avec deux décimales
 
-    // Affichage du score dans la console (à adapter selon tes besoins)
-    console.log("Score de conformité:", score);
 }
-for (let i = 0; i < tableBody.rows.length; i++) {
-    const row = tableBody.rows[i];
-    const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_");
-    const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
-    const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
+function filtrerCriteres() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const themeFilter = document.getElementById("themeFilter").value;
+    const etatFilter = document.getElementById("etatFilter").value;
 
-    // Affiche ou masque la ligne en fonction des filtres sélectionnés
-    const afficherLigne =
-        (themeFilter === "toutes" || themeFilter === themeValue) &&
-        (etatFilter === "tous" || etatFilter === etatValue);
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const themeValue = row.cells[0].textContent.toLowerCase().replace(/ /g, "_");
+        const etatInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etatValue = etatInputs.length > 0 ? etatInputs[0].value : "";
 
-    // Met à jour la visibilité de la ligne
-    row.style.display = afficherLigne ? "" : "none";
+        // Affiche ou masque la ligne en fonction des filtres sélectionnés
+        const afficherLigne =
+            (themeFilter === "toutes" || themeFilter === themeValue) &&
+            (etatFilter === "tous" || etatFilter === etatValue);
+
+        // Met à jour la visibilité de la ligne
+        row.style.display = afficherLigne ? "" : "none";
+    }
 }
 

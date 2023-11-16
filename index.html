@@ -29,7 +29,27 @@
     </div>
     <!--Fin de boutons-->
     <!--Filtre-->
-    
+    <label for="themeFilter">Filtrer par thématique :</label>
+<select id="themeFilter" onchange="filtrerCriteres()">
+    <option value="toutes">Toutes</option>
+    <option value="strategie">Stratégie</option>
+    <option value="specification">Spécification</option>
+    <option value="architecture">Architecture</option>
+    <option value="uxui">UX/UI</option>
+    <option value="contenus">Contenus</option>
+    <option value="frontend">Front-end</option>
+    <option value="backend">Back-end</option>
+    <option value="hebergement">Hébergement</option>
+</select>
+
+<label for="etatFilter">Filtrer par état :</label>
+<select id="etatFilter" onchange="filtrerCriteres()">
+    <option value="tous">Tous</option>
+    <option value="conforme">Conforme</option>
+    <option value="encours">En cours de déploiement</option>
+    <option value="nonconforme">Non conforme</option>
+    <option value="nonapplicable">Non applicable</option>
+</select>
     <!--Fin Filtre-->
 
     
