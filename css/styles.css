@@ -33,3 +33,6 @@ header {
     display: inline-block;
     position: relative;
 }
+#etatFilter {
+    display: none;
+}
