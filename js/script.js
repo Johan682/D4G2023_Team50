@@ -11,29 +11,24 @@ function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
         .then(data => {
-            // Get the table body to populate data
             const tableBody = document.querySelector("#dataTable tbody");
 
-            // Function to add a row to the table
             function addRowToTable(field, value) {
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                const cell3 = row.insertCell(2); // Ajout de la troisième colonne
+                const cell3 = row.insertCell(2);
 
                 cell1.textContent = field;
                 cell2.innerHTML = value;
 
-                // Création du fieldset
                 const fieldset = document.createElement("fieldset");
                 fieldset.id = `fieldset_${field}`;
 
                 const legend = document.createElement("legend");
-                
 
                 fieldset.appendChild(legend);
 
-                // Création du formulaire avec des boutons radio
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
@@ -53,7 +48,6 @@ function chargementpage() {
                     form.appendChild(label);
                 });
 
-                // Ajout du formulaire à la cellule
                 fieldset.appendChild(form);
                 cell3.appendChild(fieldset);
             }
@@ -61,11 +55,15 @@ function chargementpage() {
             data.criteres.forEach(critere => {
                 addRowToTable(critere.thematique, critere.critere);
             });
+
+            // Appel de la fonction de tri après avoir chargé les données
+            trierTableauAlphabetique();
         })
         .catch(error => {
             console.error("Error fetching data:", error);
         });
 }
+
 
 
 
@@ -144,6 +142,24 @@ function filtrerCriteres() {
         // Met à jour la visibilité de la ligne
         row.style.display = afficherLigne ? "" : "none";
     }
+    function trierTableauAlphabetique() {
+        const tableBody = document.querySelector("#dataTable tbody");
+        const rows = Array.from(tableBody.rows);
+    
+        // Tri des lignes en fonction du contenu de la première colonne (Thématique)
+        rows.sort((a, b) => {
+            const themeA = a.cells[0].textContent.toLowerCase();
+            const themeB = b.cells[0].textContent.toLowerCase();
+            return themeA.localeCompare(themeB);
+        });
+    
+        // Suppression de toutes les lignes du tableau
+        rows.forEach(row => tableBody.removeChild(row));
+    
+        // Ajout des lignes triées au tableau
+        rows.forEach(row => tableBody.appendChild(row));
+    }
+    
 
 }
 
