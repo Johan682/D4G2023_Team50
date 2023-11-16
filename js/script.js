@@ -126,6 +126,7 @@ function enregistrerEtatsIntermediaires(etatsIntermediaires) {
         console.error("Le localStorage n'est pas pris en charge par votre navigateur.");
     }
 }
+
 function exportToPdf() {
   // Sélectionnez l'élément à convertir en PDF
   const element = document.body;
@@ -144,7 +145,7 @@ function exportToPdf() {
 function trierParEtat() {
     const tableBody = document.querySelector("#dataTable tbody");
     const etatSorte = document.getElementById("etatSorte").value;
-    
+
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
@@ -153,7 +154,7 @@ function trierParEtat() {
         const etatA = a.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatB = b.cells[2].querySelector(`input[value=${etatSorte}]`);
         if (etatA && etatB) {
-            return etatA.checked ? -1 : 1;
+            return etatA.checked ? 1 : -1; // Inverser l'ordre
         } else if (etatA) {
             return -1;
         } else if (etatB) {
