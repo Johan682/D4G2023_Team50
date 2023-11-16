@@ -7,26 +7,33 @@
     text-align: center;
 }
 
-/* Style pour le conteneur div */
-div {
-    margin-bottom: 15px; /* Espacement en bas du conteneur */
+/* Style pour le conteneur div Filtre_Thema */
+.Filtre_Thema {
+    margin-bottom: 20px;
 }
 
 /* Style pour l'étiquette du sélecteur */
-label {
-    display: block; /* Afficher l'étiquette en tant que bloc pour ajouter de l'espace en dessous */
-    margin-bottom: 5px; /* Espacement en bas de l'étiquette */
+.Filtre_Thema label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold; /* Police en gras pour l'étiquette */
 }
 
 /* Style pour le sélecteur lui-même */
-select {
-    width: 100%; /* Largeur à 100% du conteneur parent */
-    padding: 8px; /* Remplissage intérieur du sélecteur */
-    font-size: 14px; /* Taille de la police */
-    border: 1px solid #ccc; /* Bordure grise de 1 pixel avec couleur de fond */
-    border-radius: 4px; /* Coins arrondis */
-    box-sizing: border-box; /* La largeur et la hauteur incluent la bordure et le remplissage */
+.Filtre_Thema select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
+
+/* Style pour les options du sélecteur */
+.Filtre_Thema select option {
+    font-size: 14px;
+}
+
 
 
 header {

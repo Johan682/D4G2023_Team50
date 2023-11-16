@@ -37,7 +37,7 @@ function chargementpage() {
                 const form = document.createElement("form");
                 form.id = `radioGroup_${field}`;
 
-                const options = ["conforme", "en cours de deploiement", "non conforme", "non applicable"];
+                const options = ["conforme", "en cours de deploiement", "non conforme", "nonapplicable"];
 
                 options.forEach(optionText => {
                     const label = document.createElement("label");
@@ -90,7 +90,7 @@ function calculerScore() {
             }
 
             // Si le critère est non applicable
-            if (selectedValue === "non applicable") {
+            if (selectedValue === "nonapplicable") {
                 critereNonApplicable++;
             }
         }
