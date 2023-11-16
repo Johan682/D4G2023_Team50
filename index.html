@@ -27,14 +27,14 @@
     <button id="score" onclick="calculerScore()">Score</button>
     <div id="scoreContainer">
     </div></div>
-    <button id="restaurer" onclick="restaurerDonnees()">Restaurer les données</button>
+    <button id="enregistrer" onclick="enregistrer()">Enregistrer les données</button>
     <button id="pdf" onclick="genererPDF()">Génerer PDF</button>
     <button id="tri" onclick="trierTableauParTheme();">Trier Tableau</button>
     </div>
     <!--Fin de boutons-->
     <!--Filtre-->
 
-    <select id="etatFilter" onchange="filtrerCriteres()">
+    <label><select id="etatFilter" onchange="filtrerCriteres()"></label>
         <option value="" disabled selected>Filtrer vos états</option>
         <option value="tous">Tous</option>
         <option value="conforme">Conforme</option>
