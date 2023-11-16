@@ -1,4 +1,4 @@
-let reponsesIntermediaires = [];
+document.addEventListener("DOMContentLoaded", function () {let reponsesIntermediaires = [];
 let reponseFinale = {};
 let url = document.getElementById('urlInput').value;
 
@@ -223,3 +223,4 @@ function genererPDF() {
     // Sauvegarder le PDF
     doc.save("export.pdf");
 }
+});
