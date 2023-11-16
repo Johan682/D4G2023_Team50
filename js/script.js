@@ -1,4 +1,4 @@
-let reponsesPartielles = [];
+
 // Déclare un objet pour stocker les réponses partielles
 let reponsesPartielles = [];
 
