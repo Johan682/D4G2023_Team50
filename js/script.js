@@ -1,3 +1,7 @@
+let reponsesIntermediaires = [];
+let reponseFinale = {};
+let url = document.getElementById('urlInput').value;;
+
 function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
