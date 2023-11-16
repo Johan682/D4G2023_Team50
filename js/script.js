@@ -216,7 +216,7 @@ function exportToPdf() {
 
 function trierCriteres() {
     const tableBody = document.querySelector("#dataTable tbody");
-    const themeSort = document.getElementById("Filtre_Thema").value.toLowerCase(); // Converti en minuscules
+    const themeSort = document.getElementById("Filtre_Thema").value; // Converti en minuscules
     const etatSort = document.getElementById("etatFilter").value; // Converti en minuscules
 
     // Convertit les lignes du tableau en un tableau ordinaire
