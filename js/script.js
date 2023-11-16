@@ -1,4 +1,4 @@
-function chargementPage() {
+function chargementpage() {
     fetch("referentiel-general-ecoconception-version-v1.json")
         .then(response => response.json())
         .then(data => {
