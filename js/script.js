@@ -30,11 +30,14 @@ function genererPDF() {
     const pdf = new jsPDF();
 
     // Parcours des réponses partielles
-    reponsesPartielles.forEach((reponses, index) => {
+    reponsesPartielles.forEach((ensembleReponses, index) => {
+        // Ajoute l'URL au PDF
+        pdf.text(`URL : ${ensembleReponses.url}`, 10, 10);
+
         // Ajoute les réponses au PDF
-        pdf.text(`Réponses Partielles ${index + 1}`, 10, 10);
-        reponses.forEach((reponse, i) => {
-            pdf.text(`${i + 1}. ${reponse.theme}: ${reponse.etat}`, 10, 20 + i * 10);
+        pdf.text(`Réponses Partielles ${index + 1}`, 10, 20);
+        ensembleReponses.reponses.forEach((reponse, i) => {
+            pdf.text(`${i + 1}. ${reponse.theme}: ${reponse.etat}`, 10, 30 + i * 10);
         });
 
         // Ajoute une nouvelle page pour les réponses suivantes
@@ -204,11 +207,11 @@ function trierTableauParTheme() {
     // Convertir les lignes du tableau en un tableau
     const rowsArray = Array.from(tableBody.rows);
 
-    // Trier le tableau en fonction de l'état (troisième colonne)
+    // Trier le tableau en fonction du thème (première colonne)
     rowsArray.sort((a, b) => {
-        const etatA = a.cells[2].querySelector("input[type=radio]:checked").value;
-        const etatB = b.cells[2].querySelector("input[type=radio]:checked").value;
-        return etatA.localeCompare(etatB);
+        const themeA = a.cells[0].textContent.toLowerCase();
+        const themeB = b.cells[0].textContent.toLowerCase();
+        return themeA.localeCompare(themeB);
     });
 
     // Supprimer toutes les lignes du tableau actuel
