@@ -102,7 +102,7 @@ select {
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 4px;
 }
 /* Style pour les boutons */
@@ -115,3 +115,5 @@ button {
     border: none;
     border-radius: 4px;
 }
+
+
