@@ -151,7 +151,7 @@ function restaurerEtatsIntermediaires() {
         // Effacez les données du Local Storage après la restauration
         localStorage.removeItem('etatsIntermediaires');
     } else {
-        alert("Aucune donnée à restaurer.");
+        //alert("Aucune donnée à restaurer.");
     }
 }
 
