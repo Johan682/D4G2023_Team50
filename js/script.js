@@ -223,9 +223,9 @@ function trierParEtat() {
         if (etatA && etatB) {
             return etatA.checked ? -1 : 1;
         } else if (etatA) {
-            return -1;
+            return -1; // Seul a a l'état spécifié, donc il va en haut
         } else if (etatB) {
-            return 1;
+            return 1; // Seul b a l'état spécifié, donc il va en haut
         } else {
             return 0; // Les deux sont vides, pas de changement d'ordre
         }
@@ -235,16 +235,24 @@ function trierParEtat() {
     rowsArray.sort(compareRows);
 
     // Créer un objet pour stocker les lignes triées par état
-    const groupedRows = {};
+    const groupedRows = {
+        [etatSorte]: [],
+        'other': [],
+        'empty': []
+    };
 
     // Ajouter les lignes triées à l'objet en utilisant l'état comme clé
     rowsArray.forEach(row => {
         const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
         const etatValue = etat ? etat.value : 'other';
-        if (!groupedRows[etatValue]) {
-            groupedRows[etatValue] = [];
+
+        if (etatValue === etatSorte) {
+            groupedRows[etatSorte].push(row);
+        } else if (etatValue === 'other') {
+            groupedRows['other'].push(row);
+        } else {
+            groupedRows['empty'].push(row);
         }
-        groupedRows[etatValue].push(row);
     });
 
     // Supprimer toutes les lignes du tableau actuel
@@ -257,5 +265,4 @@ function trierParEtat() {
         });
     });
 }
-
 
