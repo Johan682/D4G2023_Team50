@@ -178,10 +178,3 @@ function trierParEtat() {
     });
 }
 
-function appelfonctiontrier() {
-    trierParEtat("conforme");
-    trierParEtat("encoursdedeploiement");
-    trierParEtat("nonconforme");
-    trierParEtat("nonapplicable");
-    trierParEtat();
-}
