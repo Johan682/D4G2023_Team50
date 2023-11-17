@@ -178,3 +178,8 @@ function trierParEtat() {
         });
     });
 }
+
+function appelfonctiontrier() {
+
+    
+}
