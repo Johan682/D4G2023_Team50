@@ -223,9 +223,9 @@ function trierParEtat() {
         if (etatA && etatB) {
             return etatA.checked ? -1 : 1;
         } else if (etatA) {
-            return -1; // Seul a a l'état spécifié, donc il va en haut
+            return -1;
         } else if (etatB) {
-            return 1; // Seul b a l'état spécifié, donc il va en haut
+            return 1;
         } else {
             return 0; // Les deux sont vides, pas de changement d'ordre
         }
