@@ -108,6 +108,31 @@ function filtrerCriteres() {
     } 
 }
 
+// Fonction pour récupérer les états intermédiaires depuis le tableau
+function recupereEtatsIntermediaires() {
+    const tableBody = document.querySelector("#dataTable tbody");
+    const etatsIntermediaires = [];
+
+    // Parcours des lignes du tableau
+    for (let i = 0; i < tableBody.rows.length; i++) {
+        const row = tableBody.rows[i];
+        const theme = row.cells[0].textContent;
+        const value = row.cells[1].textContent;
+        const radioInputs = row.cells[2].querySelectorAll("input[type=radio]:checked");
+        const etat = radioInputs.length > 0 ? radioInputs[0].value : "";
+
+        // Stocker l'état intermédiaire dans un objet
+        etatsIntermediaires.push({
+            theme: theme,
+            value: value,
+            etat: etat,
+        });
+    }
+
+    return etatsIntermediaires;
+}
+
+
 // Ajoutez une fonction pour sauvegarder les états intermédiaires
 function sauvegarderEtatsIntermediaires() {
     // Récupérez les états intermédiaires depuis le tableau
