@@ -89,4 +89,29 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+/* Media queries pour rendre la page responsive */
+
+@media only screen and (max-width: 768px) {
+    .body {
+        width: 100%;
+    }
+    .textlogo {
+        margin-right: 0;
+    }
+    #score {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    #scoreContainer {
+        max-width: 100%;
+    }
+    button {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    input,
+    select {
+        margin-bottom: 10px;
+    }
+}
 
