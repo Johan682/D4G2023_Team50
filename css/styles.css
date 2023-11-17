@@ -11,7 +11,7 @@ body {
 }
 
 .body {
-     width: 80%;
+    width: 80%;
     background-color: #fff;
     margin-bottom: 20px;
     border-radius: 8px;
@@ -61,7 +61,7 @@ header {
     background-color: #00561b;
     text-align: center;
     padding: 20px;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .logo {
