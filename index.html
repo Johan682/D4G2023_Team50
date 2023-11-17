@@ -42,7 +42,12 @@
     <option value="nonconforme">Non conforme</option>
     <option value="nonapplicable">Non applicable</option>
     </select>
-
+<script>
+    trierParEtat("conforme");
+    trierParEtat("encoursdedeploiement");
+    trierParEtat("nonconforme");
+    trierParEtat("nonapplicable");
+</script>
     <select id="etatFilter" onchange="filtrerCriteres()">
         <option value="" disabled selected>Filtrer vos états</option>
         <option value="tous">Tous</option>
