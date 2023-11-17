@@ -108,88 +108,7 @@ function filtrerCriteres() {
     } 
 }
 
-// Ajoutez une fonction pour sauvegarder les états intermédiaires
-function sauvegarderEtatsIntermediaires() {
-    // Récupérez les états intermédiaires depuis le tableau
-    const etatsIntermediaires = recupereEtatsIntermediaires();
-    // Enregistrez les états intermédiaires dans le Local Storage
-    localStorage.setItem('etatsIntermediaires', JSON.stringify(etatsIntermediaires));
-}
 
-// Fonction pour restaurer les états intermédiaires depuis le Local Storage
-function restaurerEtatsIntermediaires() {
-    const savedData = localStorage.getItem('etatsIntermediaires');
-    if (savedData) {
-        const etatsIntermediaires = JSON.parse(savedData);
-        // Restaurez les états intermédiaires dans le tableau
-        restoreEtatsIntermediaires(etatsIntermediaires);
-        // Effacez les données du Local Storage après la restauration
-        localStorage.removeItem('etatsIntermediaires');
-    } else {
-        alert("Aucune donnée à restaurer.");
-    }
-}
-
-// Fonction pour restaurer les états intermédiaires dans le tableau
-function restoreEtatsIntermediaires(etatsIntermediaires) {
-    const tableBody = document.querySelector("#dataTable tbody");
-    // Effacez le contenu actuel du tableau
-    tableBody.innerHTML = "";
-
-    // Ajoutez chaque état intermédiaire au tableau
-    etatsIntermediaires.forEach(etat => {
-        const row = tableBody.insertRow();
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-        const cell3 = row.insertCell(2);
-
-        cell1.textContent = etat.theme;
-        cell2.textContent = etat.value;
-
-        // Créez le fieldset
-        const fieldset = document.createElement("fieldset");
-        const legend = document.createElement("legend");
-        legend.textContent = "Statut du critère";
-        fieldset.appendChild(legend);
-
-        // Créez le formulaire avec des boutons radio
-        const form = document.createElement("form");
-        form.id = `radioGroup_${etat.theme.toLowerCase().replace(/ /g, "_")}`;
-
-        const options = ["conforme", "en cours de deploiement", "non conforme", "nonapplicable"];
-
-        options.forEach(optionText => {
-            const label = document.createElement("label");
-            const radioInput = document.createElement("input");
-
-            radioInput.type = "radio";
-            radioInput.name = `radio_${etat.theme}`;
-            radioInput.value = optionText.toLowerCase();
-
-            label.appendChild(radioInput);
-            label.appendChild(document.createTextNode(` ${optionText}`));
-
-            form.appendChild(label);
-        });
-
-        // Sélectionnez le bouton radio enregistré
-        form.querySelector(`input[value="${etat.etat}"]`).checked = true;
-
-        // Ajoutez le formulaire à la cellule
-        fieldset.appendChild(form);
-        cell3.appendChild(fieldset);
-    });
-}
-
-// Restaurer les états intermédiaires au chargement de la page
-document.addEventListener("DOMContentLoaded", function () {
-    restaurerEtatsIntermediaires();
-});
-
-// Appeler cette fonction lorsque vous souhaitez restaurer les états intermédiaires
-function restaurer() {
-    restaurerEtatsIntermediaires();
-}
 
 
 
@@ -244,15 +163,9 @@ function trierParEtat() {
     // Ajouter les lignes triées à l'objet en utilisant l'état comme clé
     rowsArray.forEach(row => {
         const etat = row.cells[2].querySelector(`input[value=${etatSorte}]`);
-        const etatValue = etat ? etat.value : 'other';
+        const etatValue = etat ? (etat.checked ? etatSorte : 'other') : 'empty';
 
-        if (etatValue === etatSorte) {
-            groupedRows[etatSorte].push(row);
-        } else if (etatValue === 'other') {
-            groupedRows['other'].push(row);
-        } else {
-            groupedRows['empty'].push(row);
-        }
+        groupedRows[etatValue].push(row);
     });
 
     // Supprimer toutes les lignes du tableau actuel
@@ -265,4 +178,3 @@ function trierParEtat() {
         });
     });
 }
-
