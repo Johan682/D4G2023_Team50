@@ -92,9 +92,10 @@ select {
 /* Media queries pour rendre la page responsive */
 
 @media only screen and (max-width: 768px) {
-    .body {
-        width: 100%;
+    body {
         background-color: #fff;
+        align-items: center;
+        justify-content: center;
     }
     .textlogo {
         margin-right: 0;
